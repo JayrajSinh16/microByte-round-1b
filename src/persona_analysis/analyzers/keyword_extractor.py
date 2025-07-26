@@ -47,7 +47,12 @@ class KeywordExtractor:
         
         # Add domain-specific terms
         if 'domain' in persona_data:
-            keywords.extend(self._tokenize_phrase(persona_data['domain']))
+            domain = persona_data['domain']
+            if isinstance(domain, list):
+                for d in domain:
+                    keywords.extend(self._tokenize_phrase(d))
+            else:
+                keywords.extend(self._tokenize_phrase(domain))
         
         # Add role terms
         if 'role' in persona_data:

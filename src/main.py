@@ -112,10 +112,14 @@ class Round1BProcessor:
         """Extract content for each section in all documents"""
         all_sections = []
         for doc_path in documents:
-            doc_name = doc_path.name
-            outline = outlines[doc_name]
-            sections = self.content_extractor.extract(doc_path, outline)
-            all_sections.extend(sections)
+            try:
+                doc_name = doc_path.name
+                outline = outlines[doc_name]
+                sections = self.content_extractor.extract(doc_path, outline)
+                all_sections.extend(sections)
+            except Exception as e:
+                logger.error(f"Failed to extract content from {doc_path.name}: {str(e)}")
+                raise
         return all_sections
     
     def _save_output(self, result: Dict):

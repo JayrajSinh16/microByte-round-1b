@@ -21,6 +21,8 @@ DEBUG_MODE = os.getenv("DEBUG", "false").lower() == "true"
 
 # ML Model settings
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+SENTENCE_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"  # Same as EMBEDDING_MODEL
+MODEL_CACHE_SIZE = 100
 SIMILARITY_THRESHOLD = 0.5
 CONFIDENCE_THRESHOLD = 0.7
 

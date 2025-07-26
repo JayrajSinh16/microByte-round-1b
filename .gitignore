@@ -47,9 +47,7 @@ output/*.json
 cache/*
 logs/
 *.log
-models/*.bin
-models/*.pkl
-models/*.pt
+
 
 # Jupyter
 .ipynb_checkpoints/

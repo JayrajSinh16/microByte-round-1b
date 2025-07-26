@@ -46,7 +46,8 @@ class ProfileBuilder:
             'output': job_data.get('output', {}),
             'constraints': job_data.get('constraints', []),
             'deliverables': job_data.get('deliverables', []),
-            'focus_areas': job_data.get('focus_areas', [])
+            'focus_areas': job_data.get('focus_areas', []),
+            'keywords': job_data.get('keywords', [])
         }
     
     def _build_search_preferences(self, persona_data: Dict, 

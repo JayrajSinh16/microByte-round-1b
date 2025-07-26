@@ -31,7 +31,7 @@ class SubsectionExtractor:
             subsections = self._extract_from_section(section, query_profile)
             
             # Refine extracted text
-            refined = self._refine_subsections(subsections)
+            refined = self._refine_subsections(subsections, query_profile)
             
             # Rank subsections
             ranked = self.subsection_ranker.rank(refined, section, query_profile)
@@ -64,7 +64,7 @@ class SubsectionExtractor:
         paragraphs = content.split('\n\n')
         return len(paragraphs) > 2 and all(len(p) > 50 for p in paragraphs[:3])
     
-    def _refine_subsections(self, subsections: List[Dict]) -> List[Dict]:
+    def _refine_subsections(self, subsections: List[Dict], query_profile: Dict) -> List[Dict]:
         """Refine extracted subsections"""
         refined = []
         
@@ -75,7 +75,7 @@ class SubsectionExtractor:
             # Clean formatting
             sub['text'] = self.format_cleaner.clean(sub['text'])
             
-            # Final refinement
+            # Refine text for concise travel summaries
             sub['refined_text'] = self.text_refiner.refine(sub['text'])
             
             refined.append(sub)

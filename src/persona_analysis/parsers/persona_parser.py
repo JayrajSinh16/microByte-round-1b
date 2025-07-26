@@ -1,7 +1,7 @@
 # src/persona_analysis/parsers/persona_parser.py
 import re
 import nltk
-from typing import Dict, List, Set
+from typing import Dict, List, Set, Any
 from nltk.corpus import wordnet
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.tag import pos_tag

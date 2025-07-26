@@ -75,12 +75,20 @@ class ContentMapper:
             elif other_depth == hierarchy['depth'] + 1:
                 hierarchy['children'].append(all_sections[i]['title'])
         
-        # Find siblings (sections with same level and parent)
+        # Find siblings (sections with same level and same parent)
+        section_parent = hierarchy['parent']
         for other in all_sections:
             if other != section and other['level'] == section['level']:
+                # Find other's parent efficiently without recursion
+                other_idx = all_sections.index(other)
+                other_parent = None
+                for i in range(other_idx - 1, -1, -1):
+                    if self._get_depth(all_sections[i]['level']) < hierarchy['depth']:
+                        other_parent = all_sections[i]['title']
+                        break
+                
                 # Check if same parent
-                other_hierarchy = self._build_hierarchy(other, all_sections, outline)
-                if other_hierarchy['parent'] == hierarchy['parent']:
+                if other_parent == section_parent:
                     hierarchy['siblings'].append(other['title'])
         
         return hierarchy

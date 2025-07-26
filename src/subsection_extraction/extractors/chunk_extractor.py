@@ -185,6 +185,11 @@ class ChunkExtractor:
                 score += 0.15
             
             chunk['relevance_score'] = score
+            
+            # IMPORTANT: Preserve parent section metadata
+            chunk['document'] = section.get('document', 'Unknown')
+            chunk['parent_section'] = section.get('title', 'Unknown')
+            chunk['page'] = section.get('page', 1)
         
         # Sort by score
         chunks.sort(key=lambda x: x['relevance_score'], reverse=True)

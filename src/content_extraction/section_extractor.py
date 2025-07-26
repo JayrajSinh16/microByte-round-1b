@@ -2,6 +2,7 @@
 import fitz
 import logging
 from typing import List, Dict, Tuple, Optional
+from pathlib import Path
 
 from .boundary_detector import BoundaryDetector
 
@@ -41,7 +42,7 @@ class SectionExtractor:
                     'level': entry['level'],
                     'page': entry['page'],
                     'content': section_content,
-                    'document': pdf_path.split('/')[-1]
+                    'document': Path(pdf_path).name
                 })
             
             doc.close()
