@@ -1,0 +1,73 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+.env
+.env.local
+
+# Virtual environments
+bin/
+include/
+lib/
+lib64/
+share/
+pyvenv.cfg
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+*.cover
+.coverage.*
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Project specific
+input/documents/*.pdf
+output/*.json
+cache/*
+logs/
+*.log
+models/*.bin
+models/*.pkl
+models/*.pt
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Package files
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Documentation
+docs/_build/
+site/
+
+# Temporary files
+*.tmp
+*.bak
+*.old
+tmp/
+temp/

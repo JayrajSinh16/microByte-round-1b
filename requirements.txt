@@ -1,0 +1,33 @@
+# PDF Processing
+PyMuPDF
+pdfplumber
+pypdf
+pdfminer.six
+pytesseract
+easyocr
+opencv-python
+
+# NLP
+nltk
+spacy
+sentence-transformers
+
+# ML/Data Processing
+scikit-learn
+numpy 
+pandas
+torch
+transformers 
+
+# Text Processing
+python-Levenshtein 
+rapidfuzz
+regex
+
+# Utilities
+tqdm 
+joblib
+python-dotenv
+
+# System
+psutil

@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.env
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+input/documents/*.pdf
+output/*.json
+cache/*
+logs/*
+*.log
+
+# Documentation
+docs/
+*.md
+!approach_explanation.md
+!README.md
+
+# Git
+.git/
+.gitignore
+
+# Development
+tests/
+scripts/test_*.py
+notebooks/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Models and large files
+models/*.pkl
+models/*.h5
+models/*.pt
+*.model
