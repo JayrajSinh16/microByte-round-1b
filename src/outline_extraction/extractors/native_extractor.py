@@ -100,14 +100,17 @@ class NativeExtractor(BaseExtractor):
         # Get most common font
         font = max(set(fonts), key=fonts.count) if fonts else ""
         
+        # Ensure bbox is a list (mutable) not a tuple
+        bbox = list(block.get("bbox", [0, 0, 0, 0]))
+        
         return {
             'text': text.strip(),
             'page': page_num,
-            'bbox': block.get("bbox", [0, 0, 0, 0]),
-            'x': block["bbox"][0],
-            'y': block["bbox"][1],
-            'width': block["bbox"][2] - block["bbox"][0],
-            'height': block["bbox"][3] - block["bbox"][1],
+            'bbox': bbox,
+            'x': bbox[0],
+            'y': bbox[1],
+            'width': bbox[2] - bbox[0],
+            'height': bbox[3] - bbox[1],
             'font': font,
             'font_size': avg_size,
             'is_bold': is_bold,
@@ -135,6 +138,9 @@ class NativeExtractor(BaseExtractor):
                 # Merge blocks
                 current['text'] += ' ' + block['text']
                 current['height'] = block['y'] + block['height'] - current['y']
+                # Ensure bbox is mutable list before assignment
+                if isinstance(current['bbox'], tuple):
+                    current['bbox'] = list(current['bbox'])
                 current['bbox'][3] = block['bbox'][3]
                 current['line_count'] += block['line_count']
                 current['char_count'] = len(current['text'])
