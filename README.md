@@ -412,7 +412,7 @@ This project is developed for the Adobe India Hackathon 2025.
 
 For questions or issues:
 - **GitHub Issues**: [Create an issue](https://github.com/JayrajSinh16/adobe-round-1b/issues)
-- **Email**: jayrajsinh16@gmail.com
+- **Email**: ironm1024@gmail.com
 - **Hackathon Channel**: #round1b-support
 
 ---
