@@ -32,7 +32,7 @@ class ContentSynthesizer:
         return self.synthesize(subsections, query_profile)
     
     def synthesize(self, sections: List[Dict], query_profile: Dict = None) -> List[Dict]:
-        """STEP 3: Execute High-Quality Synthesis"""
+        """STEP 3: Execute High-Quality Synthesis with persona awareness"""
         synthesized = []
         
         for section in sections:
@@ -40,8 +40,14 @@ class ContentSynthesizer:
             if not content or len(content.strip()) < 100:  # Skip very short content
                 continue
             
+            # CRITICAL: Filter content based on persona BEFORE synthesis
+            persona_filtered_content = self._filter_content_by_persona(content, query_profile)
+            
+            if not persona_filtered_content:
+                continue
+            
             # Extract high-quality sentences
-            quality_sentences = self._extract_quality_sentences(content)
+            quality_sentences = self._extract_quality_sentences(persona_filtered_content)
             
             if quality_sentences:
                 # Synthesize into natural, coherent paragraph
@@ -53,6 +59,67 @@ class ContentSynthesizer:
                     synthesized.append(synthesized_section)
         
         return synthesized
+    
+    def _filter_content_by_persona(self, content: str, query_profile: Dict) -> str:
+        """Filter content to match persona requirements and exclude irrelevant content"""
+        if not query_profile:
+            return content
+        
+        # Get persona context
+        job_data = query_profile.get('job', {})
+        job_description = job_data.get('description', '') if isinstance(job_data, dict) else str(job_data)
+        
+        # Detect persona type
+        is_college_friends = any(term in job_description.lower() 
+                               for term in ['college', 'friends', 'group', 'young'])
+        is_family = any(term in job_description.lower() 
+                       for term in ['family', 'children', 'kids'])
+        is_business = any(term in job_description.lower() 
+                         for term in ['business', 'corporate', 'conference'])
+        
+        # Split content into sentences for filtering
+        sentences = self._split_sentences(content)
+        filtered_sentences = []
+        
+        for sentence in sentences:
+            sentence_lower = sentence.lower()
+            
+            # EXCLUDE family content for college friends
+            if is_college_friends:
+                if any(term in sentence_lower for term in [
+                    'family-friendly', 'kid-friendly', 'children', 'kids', 'family meal',
+                    'kids club', 'family resort', 'child', 'toddler', 'baby'
+                ]):
+                    continue  # Skip family-oriented content
+                
+                # PREFER young adult / social content
+                if any(term in sentence_lower for term in [
+                    'nightlife', 'bar', 'club', 'party', 'social', 'beach', 'adventure',
+                    'group', 'friends', 'young', 'entertainment', 'fun'
+                ]):
+                    filtered_sentences.append(sentence)
+                    continue
+            
+            # EXCLUDE business content for casual trips
+            if not is_business and any(term in sentence_lower for term in [
+                'conference', 'meeting room', 'business center', 'corporate'
+            ]):
+                continue
+            
+            # EXCLUDE family content for non-family personas
+            if not is_family and any(term in sentence_lower for term in [
+                'family-friendly', 'kid-friendly', 'children activities'
+            ]):
+                continue
+            
+            # Include general travel content
+            if any(term in sentence_lower for term in [
+                'visit', 'explore', 'experience', 'enjoy', 'discover', 'attraction',
+                'restaurant', 'hotel', 'location', 'destination', 'activity'
+            ]):
+                filtered_sentences.append(sentence)
+        
+        return ' '.join(filtered_sentences)
     
     def _extract_quality_sentences(self, content: str) -> List[str]:
         """Extract the most relevant, actionable sentences from content"""
@@ -177,49 +244,82 @@ class ContentSynthesizer:
         if not sentences:
             return ""
         
-        # Combine information from multiple sentences intelligently
+        # Extract key information from all sentences
         combined_info = self._extract_key_information(sentences)
         
-        # Generate natural text from the extracted information
-        if combined_info['locations'] and combined_info['activities']:
-            # Create activity-focused synthesis
-            locations_text = ', '.join(combined_info['locations'][:3])
-            activities_text = ', '.join(combined_info['activities'][:3])
-            result = f"The South of France offers {activities_text} in locations such as {locations_text}."
-            
-            # Add specific details if available
-            if combined_info['details']:
-                details_text = '; '.join(combined_info['details'][:2])
-                result += f" {details_text}."
-                
-        elif combined_info['locations']:
-            # Location-focused synthesis
-            locations_text = ', '.join(combined_info['locations'][:4])
-            result = f"Key destinations include {locations_text}."
-            
-            if combined_info['details']:
-                details_text = ' '.join(combined_info['details'][:2])
-                result += f" {details_text}."
-                
-        elif combined_info['activities']:
-            # Activity-focused synthesis
-            activities_text = ', '.join(combined_info['activities'][:4])
-            result = f"Popular activities include {activities_text}."
-            
-            if combined_info['details']:
-                details_text = ' '.join(combined_info['details'][:2])
-                result += f" {details_text}."
-        else:
-            # Fallback to best sentence
-            result = sentences[0] if sentences else ""
+        # Create natural, human-readable synthesis
+        synthesis_parts = []
         
-        return result.strip()
+        # Start with locations if available
+        if combined_info['locations']:
+            locations_text = self._format_location_list(combined_info['locations'][:3])
+            synthesis_parts.append(f"Key destinations include {locations_text}.")
+        
+        # Add activities
+        if combined_info['activities']:
+            activities_text = self._format_activity_list(combined_info['activities'][:3])
+            synthesis_parts.append(f"Popular activities feature {activities_text}.")
+        
+        # Add dining information
+        if combined_info['dining']:
+            dining_text = self._format_dining_list(combined_info['dining'][:2])
+            synthesis_parts.append(f"Dining options include {dining_text}.")
+        
+        # Add practical details
+        if combined_info['details']:
+            details_text = '. '.join(combined_info['details'][:2])
+            synthesis_parts.append(details_text + '.')
+        
+        # If we have very little structured info, use the best original sentences
+        if not synthesis_parts and sentences:
+            # Clean and use the top 2-3 sentences directly
+            clean_sentences = []
+            for sent in sentences[:3]:
+                cleaned = self._clean_sentence(sent)
+                if cleaned and len(cleaned) > 20:
+                    clean_sentences.append(cleaned)
+            if clean_sentences:
+                synthesis_parts.extend(clean_sentences)
+        
+        return ' '.join(synthesis_parts)
+    
+    def _clean_sentence(self, sentence: str) -> str:
+        """Clean and normalize a sentence"""
+        # Remove extra whitespace
+        sentence = re.sub(r'\s+', ' ', sentence).strip()
+        
+        # Remove incomplete fragments at the beginning
+        sentence = re.sub(r'^[a-z][^.]*?\s+([A-Z])', r'\1', sentence)
+        
+        # Ensure sentence ends properly
+        if not sentence.endswith(('.', '!', '?')):
+            sentence += '.'
+        
+        return sentence
+    
+    def _format_location_list(self, locations: List[str]) -> str:
+        """Format a list of locations naturally"""
+        if len(locations) == 1:
+            return locations[0]
+        elif len(locations) == 2:
+            return f"{locations[0]} and {locations[1]}"
+        else:
+            return f"{', '.join(locations[:-1])}, and {locations[-1]}"
+    
+    def _format_activity_list(self, activities: List[str]) -> str:
+        """Format a list of activities naturally"""
+        return ', '.join(activities)
+    
+    def _format_dining_list(self, dining: List[str]) -> str:
+        """Format a list of dining options naturally"""
+        return ', '.join(dining)
     
     def _extract_key_information(self, sentences: List[str]) -> Dict[str, List[str]]:
         """Extract key information elements from sentences"""
         info = {
             'locations': [],
             'activities': [],
+            'dining': [],
             'details': []
         }
         
@@ -232,6 +332,11 @@ class ContentSynthesizer:
             activity_matches = re.findall(r'\b(?:visit|explore|enjoy|experience|try|discover)\s+([^.!?,:;]+)', sentence, re.IGNORECASE)
             info['activities'].extend([match.strip() for match in activity_matches])
             
+            # Extract dining information
+            if any(word in sentence.lower() for word in ['restaurant', 'bar', 'cafe', 'dining', 'food', 'cuisine']):
+                dining_matches = re.findall(r'\b([A-Z][a-zA-Z\s-]+(?:Restaurant|Bar|Cafe|Bistro|Club))\b', sentence)
+                info['dining'].extend(dining_matches)
+            
             # Extract detailed information
             if any(word in sentence.lower() for word in ['address', 'hours', 'price', 'phone', 'contact']):
                 info['details'].append(sentence.strip())
@@ -239,6 +344,7 @@ class ContentSynthesizer:
         # Remove duplicates and clean up
         info['locations'] = list(dict.fromkeys(info['locations']))  # Remove duplicates while preserving order
         info['activities'] = list(dict.fromkeys(info['activities']))
+        info['dining'] = list(dict.fromkeys(info['dining']))
         info['details'] = list(dict.fromkeys(info['details']))
         
         return info

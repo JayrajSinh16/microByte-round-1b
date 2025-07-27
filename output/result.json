@@ -11,38 +11,38 @@
     ],
     "persona": "Travel Planner",
     "job_to_be_done": "Plan a trip of 4 days for a group of 10 college friends.",
-    "processing_timestamp": "2025-07-27T18:02:18.701369"
+    "processing_timestamp": "2025-07-27T18:59:23.921473"
   },
   "extracted_sections": [
     {
-      "document": "South of France - Things to Do.pdf",
-      "section_title": "Water Activities",
-      "importance_rank": 1,
-      "page_number": 4
-    },
-    {
       "document": "South of France - Tips and Tricks.pdf",
-      "section_title": "Gadgets and Accessories",
-      "importance_rank": 2,
-      "page_number": 4
+      "section_title": "Wine Tours",
+      "importance_rank": 1,
+      "page_number": 7
     },
     {
       "document": "South of France - Cuisine.pdf",
       "section_title": "Culinary Experiences",
-      "importance_rank": 3,
+      "importance_rank": 2,
       "page_number": 6
     },
     {
-      "document": "South of France - Cities.pdf",
-      "section_title": "Travel Tips",
-      "importance_rank": 4,
-      "page_number": 2
+      "document": "South of France - Things to Do.pdf",
+      "section_title": "Water Activities",
+      "importance_rank": 3,
+      "page_number": 4
     },
     {
       "document": "South of France - Tips and Tricks.pdf",
-      "section_title": "Packing for Adults",
+      "section_title": "Winter (December to February)",
+      "importance_rank": 4,
+      "page_number": 3
+    },
+    {
+      "document": "South of France - Tips and Tricks.pdf",
+      "section_title": "General Packing Tips and Tricks",
       "importance_rank": 5,
-      "page_number": 4
+      "page_number": 2
     }
   ],
   "subsection_analysis": [
@@ -50,31 +50,6 @@
       "document": "South of France - Cities.pdf",
       "refined_text": "Key destinations include The Oldest, France, While French, English, South. Additional notable locations are Mediterranean, Old Port. Popular activities feature marseille. Best Time to Visit: The best time to visit the South of France is during the spring (April to June) and fall (September to October) when the weather is pleasant, and the tourist crowds are smaller Transportation: The region is well-connected by an extensive network of trains, buses, and flights Renting a car is also a great option for exploring the countryside and smaller towns Language: While French is the official language, English is widely spoken in tourist areas Learning a few basic French phrases can enhance your travel experience Marseille: The Oldest City in France History Marseille, founded by Greek sailors aroun...",
       "page_number": 2
-    },
-    {
-      "document": "South of France - Things to Do.pdf",
-      "refined_text": "Popular activities feature lavender fields and vineyards, water. Luberon Regional Park: Explore picturesque villages and rolling hills, famous for lavender fields and vineyards. Water Activities Ardèche River: Paddle through the stunning Ardèche Gorge.",
-      "page_number": 4
-    },
-    {
-      "document": "South of France - Restaurants and Hotels.pdf",
-      "refined_text": "Key destinations include Le Mirazur, Mediterranean, French Riviera The, Mediterranean The. Popular activities feature with a focus on fresh, hostellerie de, dining. AM by Alexandre Mazzia (Marseille): A two-Michelin-starred restaurant offering a fine-dining experience with innovative dishes inspired by Mediterranean flavors The artistic presentation and unique flavor combinations make it a culinary adventure Le Mirazur (Menton): Ranked among the world's best restaurants, Le Mirazur offers a unique dining experience with a focus on fresh, local ingredients and innovative dishes The stunning views of the Mediterranean add to the allure La Chèvre d'Or (Èze): Located in a medieval village, this two-Michelin-starred restaurant serves refined Provençal cuisine with breathtaking views of the Fren...",
-      "page_number": 4
-    },
-    {
-      "document": "South of France - Restaurants and Hotels.pdf",
-      "refined_text": "Popular activities feature and a variety of, and a variety of outdoor. Family-Friendly Hotels Club Med Opio en Provence (Opio): A family-friendly resort offering a wide range of activities for children and adults, including sports, entertainment, and kids' clubs The beautiful setting and all-inclusive amenities make it a hassle-free vacation spot Le Mas de Pierre (Saint-Paul-de-Vence): A luxurious family-friendly hotel offering spacious rooms, beautiful gardens, and a variety of activities for children The elegant decor and attentive service ensure a comfortable stay for families Hôtel Les Roches Rouges (Saint-Raphaël): A family-friendly hotel located on the beach, offering comfortable rooms, a kids' club, and a variety of water sports The beachfront location and family-oriented amenities ...",
-      "page_number": 8
-    },
-    {
-      "document": "South of France - Restaurants and Hotels.pdf",
-      "refined_text": "Key destinations include Mediterranean The. Popular activities feature with a focus on, le cap, offering a luxurious dining. Le Louis XV - Alain Ducasse (Monaco): A three-Michelin-starred restaurant offering an opulent dining experience with a menu that celebrates the flavors of the Mediterranean The lavish decor and exceptional service make it a dining experience to remember La Vague d'Or (Saint-Tropez): A three-Michelin-starred restaurant located in the luxurious Résidence de la Pinède, offering exquisite dishes inspired by the sea and the land The serene setting and culinary excellence make it a top choice for fine dining Le Petit Nice Passedat (Marseille): A three-Michelin-starred restaurant offering exquisite seafood dishes and stunning views of the Mediterranean The creative menu and...",
-      "page_number": 6
-    },
-    {
-      "document": "South of France - Cities.pdf",
-      "refined_text": "Key destinations include Cultural Highlights Avignon, Provence It, Romans. Popular activities feature its annual festival d, and scholars key. Opéra Grand Avignon: Attend a performance at the Opéra Grand Avignon for a cultural treat Arts Scene: Explore the city's vibrant arts scene, with numerous galleries and exhibitions Cultural Highlights Avignon is famous for its annual Festival d'Avignon, held in July, which is one of the most important contemporary performing arts events in the world The festival features theater, dance, and music performances in various historic venues throughout the city Avignon's cuisine is also notable, with local specialties such as truffles, olive oil, and wines from the surrounding vineyards Aix-en-Provence: A City of Art and Culture History Aix-en-Provence, f...",
-      "page_number": 7
     }
   ]
 }

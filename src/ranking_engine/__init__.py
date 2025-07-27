@@ -1,7 +1,7 @@
 # src/ranking_engine/__init__.py
 from typing import Dict, List
 from .scorers import TFIDFScorer, BM25Scorer, SemanticScorer, StructuralScorer, DomainAwareScorer
-from .filters import KeywordFilter, LengthFilter, RelevanceFilter, SectionRelevanceFilter
+from .filters import KeywordFilter, LengthFilter, RelevanceFilter, SemanticSectionFilter
 from .rankers import EnsembleRanker, CrossDocRanker, FinalRanker
 from .embeddings import EmbeddingManager
 
@@ -20,7 +20,7 @@ class RankingEngine:
         self.keyword_filter = KeywordFilter()
         self.length_filter = LengthFilter()
         self.relevance_filter = RelevanceFilter()
-        self.section_relevance_filter = SectionRelevanceFilter()
+        self.semantic_section_filter = SemanticSectionFilter()
         
         # Initialize rankers
         self.ensemble_ranker = EnsembleRanker()
@@ -47,7 +47,7 @@ class RankingEngine:
         return final_ranked
     
     def _apply_filters(self, sections: List[Dict], query_profile: Dict) -> List[Dict]:
-        """Apply filtering stages"""
+        """Apply filtering stages with semantic scoring"""
         # Length filter
         sections = self.length_filter.filter(sections)
         
@@ -57,8 +57,8 @@ class RankingEngine:
         # Initial relevance filter
         sections = self.relevance_filter.filter(sections, query_profile)
         
-        # Section relevance filter (domain-aware)
-        sections = self.section_relevance_filter.filter(sections, query_profile)
+        # Semantic section filter (dynamic persona-driven)
+        sections = self.semantic_section_filter.filter(sections, query_profile)
         
         return sections
     

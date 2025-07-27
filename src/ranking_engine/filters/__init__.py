@@ -2,6 +2,6 @@
 from .keyword_filter import KeywordFilter
 from .length_filter import LengthFilter
 from .relevance_filter import RelevanceFilter
-from .section_relevance_filter import SectionRelevanceFilter
+from .semantic_section_filter import SemanticSectionFilter
 
-__all__ = ['KeywordFilter', 'LengthFilter', 'RelevanceFilter', 'SectionRelevanceFilter']
+__all__ = ['KeywordFilter', 'LengthFilter', 'RelevanceFilter', 'SemanticSectionFilter']
