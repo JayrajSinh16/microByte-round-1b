@@ -45,13 +45,17 @@ class ResultBuilder:
                 continue
             seen_combinations.add(combo)
             
-            # Get the raw text and ACTUALLY refine it to be concise
-            raw_text = subsection.get('text', '')
-            if not raw_text:
-                continue
-                
-            # Create concise summary (150 chars max)
-            refined_text = self._create_concise_summary(raw_text)
+            # Check if already refined by content synthesizer (extractive summarization)
+            if 'refined_text' in subsection:
+                refined_text = subsection['refined_text']
+            else:
+                # Get the raw text and ACTUALLY refine it to be concise
+                raw_text = subsection.get('text', '')
+                if not raw_text:
+                    continue
+                    
+                # Create concise summary (150 chars max)
+                refined_text = self._create_concise_summary(raw_text)
             
             # Skip if refinement failed
             if not refined_text or len(refined_text) < 50:

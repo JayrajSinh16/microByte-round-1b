@@ -11,7 +11,7 @@
     ],
     "persona": "Travel Planner",
     "job_to_be_done": "Plan a trip of 4 days for a group of 10 college friends.",
-    "processing_timestamp": "2025-07-27T18:59:23.921473"
+    "processing_timestamp": "2025-07-27T19:36:01.422618"
   },
   "extracted_sections": [
     {
@@ -34,21 +34,46 @@
     },
     {
       "document": "South of France - Tips and Tricks.pdf",
-      "section_title": "Winter (December to February)",
+      "section_title": "General Packing Tips and Tricks",
       "importance_rank": 4,
-      "page_number": 3
+      "page_number": 2
     },
     {
       "document": "South of France - Tips and Tricks.pdf",
-      "section_title": "General Packing Tips and Tricks",
+      "section_title": "Tips and Tricks for Packing",
       "importance_rank": 5,
-      "page_number": 2
+      "page_number": 8
     }
   ],
   "subsection_analysis": [
     {
+      "document": "South of France - Cuisine.pdf",
+      "refined_text": "In addition to dining at top restaurants, there are several culinary experiences you should consider: Cooking Classes: Many towns and cities in the...",
+      "page_number": 6
+    },
+    {
       "document": "South of France - Cities.pdf",
-      "refined_text": "Key destinations include The Oldest, France, While French, English, South. Additional notable locations are Mediterranean, Old Port. Popular activities feature marseille. Best Time to Visit: The best time to visit the South of France is during the spring (April to June) and fall (September to October) when the weather is pleasant, and the tourist crowds are smaller Transportation: The region is well-connected by an extensive network of trains, buses, and flights Renting a car is also a great option for exploring the countryside and smaller towns Language: While French is the official language, English is widely spoken in tourist areas Learning a few basic French phrases can enhance your travel experience Marseille: The Oldest City in France History Marseille, founded by Greek sailors aroun...",
+      "refined_text": "Best Time to Visit: The best time to visit the South of France is during the spring (April to June) and fall (September to October) when the weathe...",
+      "page_number": 2
+    },
+    {
+      "document": "South of France - Cuisine.pdf",
+      "refined_text": "To truly experience the culinary delights of the South of France, here are some restaurants you should consider visiting: Le Petit Nice Passedat (M...",
+      "page_number": 4
+    },
+    {
+      "document": "South of France - Cities.pdf",
+      "refined_text": "MuCEM (Museum of European and Mediterranean Civilizations): This modern museum explores the cultural history of the Mediterranean region through a ...",
+      "page_number": 3
+    },
+    {
+      "document": "South of France - Restaurants and Hotels.pdf",
+      "refined_text": "Grand-Hôtel du Cap-Ferrat, A Four Seasons Hotel (Saint-Jean-Cap-Ferrat): A luxurious hotel set on 7 hectares of Mediterranean gardens, offering ele...",
+      "page_number": 12
+    },
+    {
+      "document": "South of France - Things to Do.pdf",
+      "refined_text": "Here are some activities to enjoy by the sea: Beach Hopping Nice: Visit the sandy shores and enjoy the vibrant Promenade des Anglais.",
       "page_number": 2
     }
   ]
