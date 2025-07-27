@@ -1,17 +1,13 @@
 # src/utils/text/tokenizer.py
 import re
 from typing import List, Set
-import nltk
 
 class Tokenizer:
     """Text tokenization utilities"""
     
     def __init__(self):
-        # Download required NLTK data
-        try:
-            nltk.data.find('tokenizers/punkt')
-        except LookupError:
-            nltk.download('punkt', quiet=True)
+        # Use simple regex-based tokenization instead of NLTK
+        pass
         
         self.stop_words = {
             'a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for',
@@ -25,8 +21,8 @@ class Tokenizer:
         if not text:
             return []
         
-        # Use NLTK word tokenizer
-        tokens = nltk.word_tokenize(text)
+        # Use regex-based word tokenizer instead of NLTK
+        tokens = re.findall(r'\b\w+\b', text)
         
         # Lowercase if requested
         if lowercase:
@@ -46,8 +42,12 @@ class Tokenizer:
         if not text:
             return []
         
-        # Use NLTK sentence tokenizer
-        sentences = nltk.sent_tokenize(text)
+        # Use regex-based sentence tokenizer instead of NLTK
+        # Split on periods, exclamation marks, and question marks followed by whitespace or end of string
+        sentences = re.split(r'[.!?]+\s+|[.!?]+$', text)
+        sentences = [s.strip() for s in sentences if s.strip()]
+        
+        return sentences
         
         # Clean sentences
         sentences = [s.strip() for s in sentences if s.strip()]

@@ -1,14 +1,13 @@
 # src/ranking_engine/scorers/semantic_scorer.py
-import torch
 import numpy as np
 from typing import List, Dict, Any
-from sentence_transformers import SentenceTransformer
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 from .base_scorer import BaseScorer
 from config.settings import SENTENCE_MODEL_NAME, MODEL_CACHE_SIZE
 
 class SemanticScorer(BaseScorer):
-    """Score sections based on semantic similarity"""
+    """Score sections based on semantic similarity using TF-IDF"""
     
     def __init__(self):
         super().__init__()
@@ -18,17 +17,15 @@ class SemanticScorer(BaseScorer):
         self.cache_misses = 0
     
     def _load_model(self):
-        """Lazy load the sentence transformer model"""
+        """Load the TF-IDF vectorizer"""
         if self.model is None:
-            self.model = SentenceTransformer(SENTENCE_MODEL_NAME)
-            self.model.max_seq_length = 256
-            
-            # Set to eval mode
-            self.model.eval()
-            
-            # CPU optimizations
-            if not torch.cuda.is_available():
-                torch.set_num_threads(4)
+            self.model = TfidfVectorizer(
+                max_features=384,
+                stop_words='english',
+                ngram_range=(1, 2),
+                min_df=1,
+                max_df=1.0  # Changed from 0.95 to 1.0 to avoid document count issues
+            )
     
     def score(self, sections: List[Dict], query_profile: Dict) -> List[float]:
         """Score sections based on semantic similarity to query"""
@@ -82,7 +79,7 @@ class SemanticScorer(BaseScorer):
         return f"{title} {content}".strip()
     
     def _get_embedding(self, text: str) -> np.ndarray:
-        """Get embedding with caching"""
+        """Get embedding with caching using TF-IDF"""
         # Simple hash for cache key
         cache_key = hash(text)
         
@@ -91,7 +88,18 @@ class SemanticScorer(BaseScorer):
             return self.embedding_cache[cache_key]
         
         self.cache_misses += 1
-        embedding = self.model.encode(text, convert_to_numpy=True)
+        
+        # Check if model has been fitted
+        if not hasattr(self.model, 'vocabulary_'):
+            # If not fitted, fit with this text (not ideal but works for single text)
+            embedding = self.model.fit_transform([text]).toarray()[0]
+        else:
+            embedding = self.model.transform([text]).toarray()[0]
+        
+        # L2 normalize
+        norm = np.linalg.norm(embedding)
+        if norm > 0:
+            embedding = embedding / norm
         
         # Add to cache with size limit
         if len(self.embedding_cache) < MODEL_CACHE_SIZE:
@@ -100,7 +108,7 @@ class SemanticScorer(BaseScorer):
         return embedding
     
     def _batch_encode(self, texts: List[str]) -> np.ndarray:
-        """Batch encode texts for efficiency"""
+        """Batch encode texts for efficiency using TF-IDF"""
         # Check cache first
         embeddings = []
         texts_to_encode = []
@@ -118,12 +126,16 @@ class SemanticScorer(BaseScorer):
         
         # Encode uncached texts
         if texts_to_encode:
-            new_embeddings = self.model.encode(
-                texts_to_encode,
-                batch_size=32,
-                show_progress_bar=False,
-                convert_to_numpy=True
-            )
+            # If model hasn't been fitted, fit with all texts
+            if not hasattr(self.model, 'vocabulary_'):
+                new_embeddings = self.model.fit_transform(texts_to_encode).toarray()
+            else:
+                new_embeddings = self.model.transform(texts_to_encode).toarray()
+            
+            # L2 normalize
+            norms = np.linalg.norm(new_embeddings, axis=1, keepdims=True)
+            norms[norms == 0] = 1
+            new_embeddings = new_embeddings / norms
             
             # Add to results and cache
             for idx, text, embedding in zip(text_indices, texts_to_encode, new_embeddings):

@@ -1,6 +1,5 @@
 # src/persona_analysis/parsers/job_parser.py
 import re
-import nltk
 from typing import Dict, List, Set
 
 class JobParser:
@@ -65,19 +64,21 @@ class JobParser:
     
     def _identify_target(self, text: str) -> List[str]:
         """Identify what the job targets"""
-        # Use POS tagging to find objects of verbs
-        tokens = nltk.word_tokenize(text)
-        pos_tags = nltk.pos_tag(tokens)
+        # Simple approach without POS tagging - look for nouns after common action verbs
+        tokens = re.findall(r'\b\w+\b', text.lower())
         
         targets = []
+        action_verbs_flat = [verb for verb_list in self.action_verbs.values() for verb in verb_list]
         
-        # Look for nouns after verbs
-        for i, (word, pos) in enumerate(pos_tags):
-            if pos.startswith('VB'):  # Verb
-                # Look for following nouns
-                for j in range(i + 1, min(i + 5, len(pos_tags))):
-                    if pos_tags[j][1] in ['NN', 'NNS', 'NNP', 'NNPS']:
-                        targets.append(pos_tags[j][0])
+        # Look for words after action verbs
+        for i, token in enumerate(tokens):
+            if token in action_verbs_flat and i + 1 < len(tokens):
+                # Take the next few words as potential targets
+                for j in range(i + 1, min(i + 4, len(tokens))):
+                    next_word = tokens[j]
+                    if (len(next_word) > 2 and 
+                        next_word not in ['the', 'a', 'an', 'and', 'or', 'for', 'to', 'of']):
+                        targets.append(next_word)
         
         return list(set(targets))
     
@@ -126,20 +127,17 @@ class JobParser:
     
     def _extract_job_keywords(self, text: str) -> List[str]:
         """Extract important keywords from job description"""
-        # Tokenize and POS tag
-        tokens = nltk.word_tokenize(text)
-        pos_tags = nltk.pos_tag(tokens)
+        # Simple tokenization without POS tagging
+        tokens = re.findall(r'\b\w+\b', text.lower())
         
         keywords = []
         
-        # Extract nouns and important adjectives
-        for word, pos in pos_tags:
-            if pos in ['NN', 'NNS', 'NNP', 'NNPS', 'JJ'] and len(word) > 2:
-                keywords.append(word.lower())
-        
-        # Remove common words
-        common_words = {'the', 'and', 'for', 'with', 'this', 'that', 'from'}
-        keywords = [k for k in keywords if k not in common_words]
+        # Extract meaningful words
+        for word in tokens:
+            if (len(word) > 2 and 
+                word not in {'the', 'and', 'for', 'with', 'this', 'that', 'from', 'are', 'was', 'have', 'been'} and
+                not word.isdigit()):
+                keywords.append(word)
         
         return list(set(keywords))
     

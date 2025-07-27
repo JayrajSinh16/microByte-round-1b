@@ -1,7 +1,6 @@
 # src/subsection_extraction/extractors/chunk_extractor.py
 import re
 from typing import List, Dict, Tuple
-from nltk.tokenize import sent_tokenize, word_tokenize
 
 from config.constants import MIN_SUBSECTION_LENGTH, SUBSECTIONS_PER_SECTION
 
@@ -76,7 +75,9 @@ class ChunkExtractor:
     def _extract_by_semantics(self, content: str) -> List[Dict]:
         """Extract chunks based on semantic boundaries"""
         chunks = []
-        sentences = sent_tokenize(content)
+        # Use regex-based sentence tokenization instead of NLTK
+        sentences = re.split(r'[.!?]+\s+|[.!?]+$', content)
+        sentences = [s.strip() for s in sentences if s.strip()]
         
         if not sentences:
             return chunks
@@ -122,7 +123,9 @@ class ChunkExtractor:
     def _extract_by_window(self, content: str) -> List[Dict]:
         """Extract chunks using sliding window"""
         chunks = []
-        sentences = sent_tokenize(content)
+        # Use regex-based sentence tokenization instead of NLTK
+        sentences = re.split(r'[.!?]+\s+|[.!?]+$', content)
+        sentences = [s.strip() for s in sentences if s.strip()]
         
         if len(sentences) < self.min_sentences:
             return [{

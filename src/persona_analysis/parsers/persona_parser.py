@@ -1,21 +1,13 @@
 # src/persona_analysis/parsers/persona_parser.py
 import re
-import nltk
 from typing import Dict, List, Set, Any
-from nltk.corpus import wordnet
-from nltk.tokenize import word_tokenize, sent_tokenize
-from nltk.tag import pos_tag
 
 class PersonaParser:
     """Parse and analyze persona descriptions"""
     
     def __init__(self):
-        # Download required NLTK data
-        for resource in ['punkt', 'averaged_perceptron_tagger', 'wordnet']:
-            try:
-                nltk.data.find(f'tokenizers/{resource}')
-            except LookupError:
-                nltk.download(resource, quiet=True)
+        # Simple mapping for POS patterns without NLTK
+        self.noun_patterns = [r'\b\w+er\b', r'\b\w+ist\b', r'\b\w+ian\b']
         
         self.expertise_indicators = {
             'expert': ['phd', 'professor', 'researcher', 'expert', 'senior', 'lead'],
@@ -51,18 +43,20 @@ class PersonaParser:
             if match:
                 return match.group(1).strip()
         
-        # Fallback: first noun phrase
-        tokens = word_tokenize(text)
-        pos_tags = pos_tag(tokens)
+        # Fallback: first noun-like words using regex
+        tokens = re.findall(r'\b\w+\b', text.lower())
         
-        noun_phrase = []
-        for word, pos in pos_tags:
-            if pos in ['NN', 'NNP', 'NNS', 'NNPS']:
-                noun_phrase.append(word)
-            elif noun_phrase:  # End of noun phrase
+        # Look for common profession/role words
+        profession_words = []
+        for token in tokens:
+            # Simple pattern matching for professions
+            if (token.endswith('er') or token.endswith('ist') or token.endswith('ian') or 
+                token in ['manager', 'analyst', 'engineer', 'developer', 'designer', 'planner']):
+                profession_words.append(token)
+            if len(profession_words) >= 2:  # Stop after finding a few
                 break
         
-        return ' '.join(noun_phrase) if noun_phrase else 'Professional'
+        return ' '.join(profession_words) if profession_words else 'Professional'
     
     def _extract_domain(self, text: str) -> List[str]:
         """Extract domain/field information"""
@@ -100,15 +94,15 @@ class PersonaParser:
         """Extract important keywords from persona"""
         keywords = []
         
-        # Tokenize and POS tag
-        tokens = word_tokenize(text)
-        pos_tags = pos_tag(tokens)
+        # Simple tokenization and keyword extraction without POS tagging
+        tokens = re.findall(r'\b\w+\b', text.lower())
         
-        # Extract nouns and adjectives
-        for word, pos in pos_tags:
-            if pos in ['NN', 'NNS', 'NNP', 'NNPS', 'JJ', 'JJR', 'JJS']:
-                if len(word) > 2 and word.lower() not in ['the', 'and', 'for']:
-                    keywords.append(word.lower())
+        # Extract meaningful words (nouns and adjectives patterns)
+        for word in tokens:
+            if (len(word) > 2 and 
+                word not in ['the', 'and', 'for', 'with', 'are', 'was', 'have', 'been'] and
+                not word.isdigit()):
+                keywords.append(word)
         
         # Remove duplicates while preserving order
         seen = set()

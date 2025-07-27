@@ -4,6 +4,7 @@ from .tfidf_scorer import TFIDFScorer
 from .bm25_scorer import BM25Scorer
 from .semantic_scorer import SemanticScorer
 from .structural_scorer import StructuralScorer
+from .domain_aware_scorer import DomainAwareScorer
 
 __all__ = ['BaseScorer', 'TFIDFScorer', 'BM25Scorer', 
-           'SemanticScorer', 'StructuralScorer']
+           'SemanticScorer', 'StructuralScorer', 'DomainAwareScorer']

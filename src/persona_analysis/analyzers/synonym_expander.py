@@ -1,19 +1,11 @@
 # src/persona_analysis/analyzers/synonym_expander.py
 from typing import List, Dict, Set
-import nltk
-from nltk.corpus import wordnet
 
 class SynonymExpander:
     """Expand keywords with synonyms and related terms"""
     
     def __init__(self):
-        # Download WordNet if not already present
-        try:
-            nltk.data.find('corpora/wordnet')
-        except LookupError:
-            nltk.download('wordnet', quiet=True)
-        
-        # Manual expansions for common technical terms
+        # Manual expansions for common technical terms (no WordNet needed)
         self.manual_expansions = {
             'ml': ['machine learning', 'artificial intelligence', 'ai'],
             'ai': ['artificial intelligence', 'machine learning', 'ml'],
@@ -70,19 +62,25 @@ class SynonymExpander:
         return sorted(list(expanded))
     
     def _get_wordnet_synonyms(self, word: str) -> Set[str]:
-        """Get synonyms from WordNet"""
+        """Get synonyms from manual mapping (WordNet disabled for offline use)"""
         synonyms = set()
         
-        for synset in wordnet.synsets(word):
-            # Get synonyms
-            for lemma in synset.lemmas():
-                synonym = lemma.name().replace('_', ' ')
-                if synonym.lower() != word.lower():
-                    synonyms.add(synonym.lower())
-            
-            # Limit to prevent explosion
-            if len(synonyms) > 5:
-                break
+        # Use manual synonym mapping instead of WordNet
+        common_synonyms = {
+            'travel': ['journey', 'trip', 'vacation', 'tourism'],
+            'plan': ['organize', 'arrange', 'schedule', 'prepare'],
+            'guide': ['manual', 'handbook', 'reference', 'tutorial'],
+            'city': ['town', 'urban', 'metropolitan'],
+            'food': ['cuisine', 'dining', 'restaurant', 'meal'],
+            'hotel': ['accommodation', 'lodging', 'stay'],
+            'trip': ['journey', 'travel', 'vacation', 'tour'],
+            'visit': ['explore', 'see', 'tour', 'experience'],
+            'explore': ['discover', 'visit', 'tour', 'see'],
+            'activity': ['thing', 'attraction', 'experience'],
+        }
+        
+        if word.lower() in common_synonyms:
+            synonyms.update(common_synonyms[word.lower()])
         
         return synonyms
     

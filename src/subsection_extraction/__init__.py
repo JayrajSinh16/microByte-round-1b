@@ -1,7 +1,7 @@
 # src/subsection_extraction/__init__.py
 from typing import Dict, List
 from .extractors import ParagraphExtractor, ChunkExtractor, WindowExtractor
-from .refiners import TextRefiner, NoiseRemover, FormatCleaner
+from .refiners import TextRefiner, NoiseRemover, FormatCleaner, ContentSynthesizer
 from .rankers import SubsectionRanker, DiversityScorer
 
 class SubsectionExtractor:
@@ -17,6 +17,7 @@ class SubsectionExtractor:
         self.text_refiner = TextRefiner()
         self.noise_remover = NoiseRemover()
         self.format_cleaner = FormatCleaner()
+        self.content_synthesizer = ContentSynthesizer()
         
         # Rankers
         self.subsection_ranker = SubsectionRanker()
@@ -65,7 +66,7 @@ class SubsectionExtractor:
         return len(paragraphs) > 2 and all(len(p) > 50 for p in paragraphs[:3])
     
     def _refine_subsections(self, subsections: List[Dict], query_profile: Dict) -> List[Dict]:
-        """Refine extracted subsections"""
+        """Refine extracted subsections with domain-aware synthesis"""
         refined = []
         
         for sub in subsections:
@@ -75,11 +76,14 @@ class SubsectionExtractor:
             # Clean formatting
             sub['text'] = self.format_cleaner.clean(sub['text'])
             
-            # Refine text for concise travel summaries
+            # Refine text for concise summaries
             sub['refined_text'] = self.text_refiner.refine(sub['text'])
             
             refined.append(sub)
         
-        return refined
+        # Apply content synthesis for coherent, actionable summaries
+        synthesized = self.content_synthesizer.synthesize_subsections(refined, query_profile)
+        
+        return synthesized
 
 __all__ = ['SubsectionExtractor']

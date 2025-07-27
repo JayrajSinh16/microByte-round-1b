@@ -36,10 +36,12 @@ class FinalRanker:
         filtered = []
         
         # Get thresholds
-        min_score = query_profile.get('min_relevance_score', 0.3)
+        min_score = query_profile.get('min_relevance_score', 0.1)  # Lower threshold
         
         for section in sections:
             if section.get('final_score', 0) >= min_score:
+                # Map final_score to relevance_score for consistency
+                section['relevance_score'] = section.get('final_score', 0)
                 filtered.append(section)
         
         return filtered

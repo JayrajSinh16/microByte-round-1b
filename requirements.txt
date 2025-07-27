@@ -7,17 +7,10 @@ pytesseract
 easyocr
 opencv-python
 
-# NLP
-nltk
-spacy
-sentence-transformers
-
 # ML/Data Processing
 scikit-learn
 numpy 
 pandas
-torch
-transformers 
 
 # Text Processing
 python-Levenshtein 

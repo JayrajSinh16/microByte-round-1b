@@ -1,7 +1,7 @@
 # src/ranking_engine/__init__.py
 from typing import Dict, List
-from .scorers import TFIDFScorer, BM25Scorer, SemanticScorer, StructuralScorer
-from .filters import KeywordFilter, LengthFilter, RelevanceFilter
+from .scorers import TFIDFScorer, BM25Scorer, SemanticScorer, StructuralScorer, DomainAwareScorer
+from .filters import KeywordFilter, LengthFilter, RelevanceFilter, SectionRelevanceFilter
 from .rankers import EnsembleRanker, CrossDocRanker, FinalRanker
 from .embeddings import EmbeddingManager
 
@@ -14,11 +14,13 @@ class RankingEngine:
         self.bm25_scorer = BM25Scorer()
         self.semantic_scorer = SemanticScorer()
         self.structural_scorer = StructuralScorer()
+        self.domain_aware_scorer = DomainAwareScorer()
         
         # Initialize filters
         self.keyword_filter = KeywordFilter()
         self.length_filter = LengthFilter()
         self.relevance_filter = RelevanceFilter()
+        self.section_relevance_filter = SectionRelevanceFilter()
         
         # Initialize rankers
         self.ensemble_ranker = EnsembleRanker()
@@ -55,15 +57,23 @@ class RankingEngine:
         # Initial relevance filter
         sections = self.relevance_filter.filter(sections, query_profile)
         
+        # Section relevance filter (domain-aware)
+        sections = self.section_relevance_filter.filter(sections, query_profile)
+        
         return sections
     
     def _score_sections(self, sections: List[Dict], query_profile: Dict) -> List[Dict]:
-        """Score sections using multiple methods"""
+        """Score sections using multiple methods including domain awareness"""
         # Calculate individual scores
         tfidf_scores = self.tfidf_scorer.score(sections, query_profile)
         bm25_scores = self.bm25_scorer.score(sections, query_profile)
         semantic_scores = self.semantic_scorer.score(sections, query_profile)
         structural_scores = self.structural_scorer.score(sections, query_profile)
+        domain_scores = self.domain_aware_scorer.score(sections, query_profile)
+        
+        # Get domain-specific weights
+        domain_type = query_profile.get('domain_profile', {}).get('domain', 'travel_planner')
+        weights = self._get_scorer_weights(domain_type)
         
         # Combine scores
         for i, section in enumerate(sections):
@@ -71,14 +81,54 @@ class RankingEngine:
                 'tfidf': tfidf_scores[i],
                 'bm25': bm25_scores[i],
                 'semantic': semantic_scores[i],
-                'structural': structural_scores[i]
+                'structural': structural_scores[i],
+                'domain': domain_scores[i]
             }
             
-            # Calculate ensemble score
-            section['final_score'] = self.ensemble_ranker.combine_scores(
-                section['scores'], query_profile
+            # Calculate ensemble score with domain awareness
+            section['final_score'] = (
+                tfidf_scores[i] * weights['tfidf'] +
+                bm25_scores[i] * weights['bm25'] +
+                semantic_scores[i] * weights['semantic'] +
+                structural_scores[i] * weights['structural'] +
+                domain_scores[i] * weights['domain']
             )
         
         return sections
+    
+    def _get_scorer_weights(self, domain_type: str) -> Dict[str, float]:
+        """Get scorer weights based on domain type"""
+        domain_weights = {
+            'travel_planner': {
+                'tfidf': 0.15,
+                'bm25': 0.15, 
+                'semantic': 0.25,
+                'structural': 0.15,
+                'domain': 0.30  # Higher weight for domain-specific scoring
+            },
+            'food_contractor': {
+                'tfidf': 0.20,
+                'bm25': 0.20,
+                'semantic': 0.20,
+                'structural': 0.15,
+                'domain': 0.25
+            },
+            'hr_professional': {
+                'tfidf': 0.25,
+                'bm25': 0.25,
+                'semantic': 0.15,
+                'structural': 0.15,
+                'domain': 0.20
+            },
+            'business_analyst': {
+                'tfidf': 0.25,
+                'bm25': 0.25,
+                'semantic': 0.15,
+                'structural': 0.20,
+                'domain': 0.15
+            }
+        }
+        
+        return domain_weights.get(domain_type, domain_weights['travel_planner'])
 
 __all__ = ['RankingEngine']
