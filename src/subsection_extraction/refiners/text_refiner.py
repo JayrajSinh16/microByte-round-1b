@@ -57,15 +57,23 @@ class TextRefiner:
                     best_sentence = sentence
                     break
         
-        # Final result: exactly one sentence, max 150 characters
+        # Final result: return the best sentence without artificial truncation
         if best_sentence:
-            result = best_sentence + '.'
-            if len(result) > 150:
-                result = result[:147] + '...'
+            result = best_sentence
+            if not result.endswith('.'):
+                result += '.'
             return result
         
-        result = text[:100] + '...'  # Emergency fallback
-        return result
+        # Emergency fallback: return first meaningful sentence
+        sentences = re.split(r'[.!?]+', text)
+        for sentence in sentences:
+            if len(sentence.strip()) > 20:
+                result = sentence.strip()
+                if not result.endswith('.'):
+                    result += '.'
+                return result
+        
+        return text.strip()  # Last resort: return original text
     
     def _clean_and_normalize(self, text: str) -> str:
         """Clean and normalize text"""

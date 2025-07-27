@@ -47,6 +47,7 @@ class ResultBuilder:
             
             # Check if already refined by content synthesizer (extractive summarization)
             if 'refined_text' in subsection:
+                # Use extractive summarization output directly - no further processing needed
                 refined_text = subsection['refined_text']
             else:
                 # Get the raw text and ACTUALLY refine it to be concise
@@ -54,7 +55,7 @@ class ResultBuilder:
                 if not raw_text:
                     continue
                     
-                # Create concise summary (150 chars max)
+                # Create concise summary only for non-ML processed content
                 refined_text = self._create_concise_summary(raw_text)
             
             # Skip if refinement failed
@@ -104,19 +105,15 @@ class ResultBuilder:
             key_sentences = self._extract_key_sentences(sentences)
             summary = ' '.join(key_sentences)
         
-        # Ensure summary is comprehensive for travel planning
-        if len(summary) > 800:
-            summary = self._trim_to_length(summary, 800)
+        # For extractive summarization, don't impose artificial length limits
+        # Allow natural length based on semantic relevance
         
         # Final cleanup and validation
         summary = summary.strip()
         
         # Ensure it ends properly
         if summary and not summary.endswith('.'):
-            if len(summary) < 797:
-                summary += '.'
-            else:
-                summary = summary[:797] + '...'
+            summary += '.'
         
         return summary
     
@@ -417,18 +414,10 @@ class ResultBuilder:
         return practical[:3]
     
     def _trim_to_length(self, text: str, max_length: int) -> str:
-        """Trim text to maximum length at sentence boundary"""
-        if len(text) <= max_length:
-            return text
-        
-        # Find the last complete sentence within the limit
-        trimmed = text[:max_length]
-        last_period = trimmed.rfind('.')
-        
-        if last_period > max_length * 0.7:  # If we can keep most of the text
-            return text[:last_period + 1]
-        else:
-            return trimmed + "..."
+        """Return text without artificial truncation for extractive summarization"""
+        # For extractive summarization, we want the complete content
+        # Remove artificial length limits
+        return text
     
     def _get_accurate_page_number(self, subsection: Dict) -> int:
         """Get accurate page number for subsection"""
