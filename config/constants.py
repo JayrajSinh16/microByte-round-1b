@@ -15,11 +15,11 @@ LARGE_FONT_THRESHOLD = 14
 MEDIUM_FONT_THRESHOLD = 12
 SMALL_FONT_THRESHOLD = 10
 
-# Font size ratios for heading detection
-TITLE_SIZE_RATIO = 1.5
-H1_SIZE_RATIO = 1.3
-H2_SIZE_RATIO = 1.2
-H3_SIZE_RATIO = 1.1
+# Font size ratios for heading detection (more permissive for travel guides)
+TITLE_SIZE_RATIO = 1.3
+H1_SIZE_RATIO = 1.2
+H2_SIZE_RATIO = 1.1
+H3_SIZE_RATIO = 1.0  # Allow headings with same size as body if other criteria met
 
 # Hierarchy classification thresholds
 H1_CONFIDENCE_THRESHOLD = 0.8
@@ -41,4 +41,4 @@ MIN_SECTION_QUALITY = 0.5
 MIN_RELEVANCE_SCORE = 0.4
 
 # Output settings
-MAX_OUTPUT_SECTIONS = 10
+MAX_OUTPUT_SECTIONS = 5

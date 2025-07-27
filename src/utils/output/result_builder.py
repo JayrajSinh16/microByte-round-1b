@@ -61,19 +61,16 @@ class ResultBuilder:
             section_id = f"{document_name}_{section_title}"
             
             refined_subsections.append({
-                "section_id": section_id,
                 "document": document_name,
-                "section_title": section_title,
-                "refined_content": refined_text,
-                "page_number": page_num,
-                "relevance_score": subsection.get('relevance_score', 0.0)
+                "refined_text": refined_text,
+                "page_number": page_num
             })
         
         # Build final result with correct structure
         result = {
             "metadata": metadata,
             "extracted_sections": extracted_sections,
-            "refined_subsections": refined_subsections  # This is the correct field name
+            "subsection_analysis": refined_subsections  # Use expected field name
         }
         
         return result
@@ -97,19 +94,19 @@ class ResultBuilder:
         # Combine and ensure readability
         summary = ' '.join(key_sentences)
         
-        # Ensure summary is concise - AGGRESSIVE trimming for college trip planning
-        if len(summary) > 150:
-            summary = self._trim_to_length(summary, 150)
+        # Ensure summary is comprehensive for travel planning
+        if len(summary) > 800:
+            summary = self._trim_to_length(summary, 800)
         
         # Final cleanup and validation
         summary = summary.strip()
         
         # Ensure it ends properly
         if summary and not summary.endswith('.'):
-            if len(summary) < 147:
+            if len(summary) < 797:
                 summary += '.'
             else:
-                summary = summary[:147] + '...'
+                summary = summary[:797] + '...'
         
         return summary
     
@@ -223,8 +220,8 @@ class ResultBuilder:
         # Sort by score and select top sentences
         scored_sentences.sort(key=lambda x: x[1], reverse=True)
         
-        # Take top 3-4 sentences with scores > 0
-        for sentence, score in scored_sentences[:4]:
+        # Take top 8-10 sentences with scores > 0
+        for sentence, score in scored_sentences[:10]:
             if score > 0:
                 key_sentences.append(sentence)
         
@@ -233,7 +230,7 @@ class ResultBuilder:
             if sentences[0] not in key_sentences:
                 key_sentences.insert(0, sentences[0])
         
-        return key_sentences[:3]  # Max 3 sentences
+        return key_sentences[:8]  # Max 8 sentences for comprehensive coverage
     
     def _trim_to_length(self, text: str, max_length: int) -> str:
         """Trim text to maximum length at sentence boundary"""

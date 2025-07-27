@@ -5,8 +5,9 @@ from .pattern_strategy import PatternStrategy
 from .ml_strategy import MLStrategy
 from .structural_strategy import StructuralStrategy
 from .semantic_strategy import SemanticStrategy
+from .universal_strategy import UniversalStrategy
 
 __all__ = [
     'BaseStrategy', 'FontStrategy', 'PatternStrategy',
-    'MLStrategy', 'StructuralStrategy', 'SemanticStrategy'
+    'MLStrategy', 'StructuralStrategy', 'SemanticStrategy', 'UniversalStrategy'
 ]

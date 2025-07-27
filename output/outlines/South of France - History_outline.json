@@ -1,0 +1,54 @@
+{
+  "title": "A Historical Journey Through the South of France",
+  "outline": [
+    {
+      "level": "H2",
+      "text": "Introduction",
+      "page": 1
+    },
+    {
+      "level": "H2",
+      "text": "Key Historical Sites in Nice",
+      "page": 3
+    },
+    {
+      "level": "H2",
+      "text": "Key Historical Sites in Avignon",
+      "page": 4
+    },
+    {
+      "level": "H2",
+      "text": "Key Historical Sites in Toulouse",
+      "page": 7
+    },
+    {
+      "level": "H2",
+      "text": "Key Historical Sites in Arles",
+      "page": 8
+    },
+    {
+      "level": "H2",
+      "text": "Key Historical Sites in Montpellier",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "Key Historical Sites in Perpignan",
+      "page": 11
+    },
+    {
+      "level": "H2",
+      "text": "Conclusion",
+      "page": 12
+    }
+  ],
+  "metadata": {
+    "total_headings": 8,
+    "has_toc": false,
+    "confidence_stats": {
+      "mean": 0.604,
+      "min": 0.494,
+      "max": 0.783
+    }
+  }
+}

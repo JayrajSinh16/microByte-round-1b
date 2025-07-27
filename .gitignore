@@ -43,7 +43,6 @@ desktop.ini
 
 # Project specific
 input/documents/*.pdf
-output/*.json
 cache/*
 logs/
 *.log

@@ -17,11 +17,12 @@ class EnsembleVoter:
         
         # Default weights for strategies
         self.default_weights = {
-            'font': 0.3,
-            'pattern': 0.25,
-            'ml': 0.25,
-            'structural': 0.15,
-            'semantic': 0.05
+            'universal': 0.5,  # Give universal strategy highest weight
+            'font': 0.2,
+            'pattern': 0.15,
+            'ml': 0.1,
+            'structural': 0.05,
+            'semantic': 0.0  # Disable for now
         }
     
     def vote(self, strategy_predictions: Dict[str, List[Dict]], 

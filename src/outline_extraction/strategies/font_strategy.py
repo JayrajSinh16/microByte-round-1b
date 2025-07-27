@@ -68,9 +68,13 @@ class FontStrategy(BaseStrategy):
         if size_ratio >= H3_SIZE_RATIO:
             return True
         
-        # Bold text detection
+        # Bold text detection - MORE AGGRESSIVE for travel guides
+        # Allow bold text with same font size as body text if it's short enough
         if block.get('is_bold', False) and len(block['text']) < 200:
-            return True
+            text_words = len(block['text'].split())
+            # Allow bold text that looks like a heading (short, meaningful)
+            if text_words <= 15 and size_ratio >= 0.9:  # Even if slightly smaller than body
+                return True
         
         # All caps detection
         if block['text'].isupper() and len(block['text'].split()) < 10:
@@ -107,16 +111,25 @@ class FontStrategy(BaseStrategy):
             confidence += 0.3
         elif size_ratio >= H2_SIZE_RATIO:
             confidence += 0.2
+        elif size_ratio >= H3_SIZE_RATIO:
+            confidence += 0.15
         else:
+            # Even if font size is same/smaller, give some confidence for structure
             confidence += 0.1
         
-        # Style contribution
+        # Style contribution - INCREASED for bold text
         if block.get('is_bold', False):
-            confidence += 0.2
+            if size_ratio >= 0.9:  # Bold text with reasonable size
+                confidence += 0.3  # Increased from 0.2
+            else:
+                confidence += 0.2
         
-        # Length contribution
+        # Length contribution - headings should be concise
         text_length = len(block['text'])
-        if text_length < 50:
+        word_count = len(block['text'].split())
+        if word_count <= 15 and text_length < 150:  # Good heading length
+            confidence += 0.25
+        elif text_length < 50:
             confidence += 0.2
         elif text_length < 100:
             confidence += 0.1

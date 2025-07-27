@@ -27,7 +27,7 @@ class OutlineExtractor:
         heading_predictions = self.detector.detect(blocks, profile)
         
         # Vote on final headings
-        final_headings = self.voter.vote(heading_predictions)
+        final_headings = self.voter.vote(heading_predictions, blocks, self.detector.weights)
         
         # Build outline
         outline = self.builder.build(blocks, final_headings)

@@ -18,9 +18,16 @@ class OCRExtractor(BaseExtractor):
         self.dpi = 300
         self.preprocessing = True
         self.lang = 'eng'
+        # Configure tesseract path for Windows
+        pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+        self.tesseract_available = self._check_tesseract()
     
     def extract(self, pdf_path: str, **kwargs) -> List[Dict[str, Any]]:
         """Extract text blocks using OCR"""
+        if not self.tesseract_available:
+            logger.warning("Tesseract not available, skipping OCR extraction")
+            return []
+            
         try:
             doc = fitz.open(pdf_path)
             blocks = []
@@ -58,6 +65,9 @@ class OCRExtractor(BaseExtractor):
     
     def can_handle(self, pdf_path: str) -> bool:
         """Check if OCR is needed"""
+        if not self.tesseract_available:
+            return False
+            
         try:
             doc = fitz.open(pdf_path)
             
@@ -194,3 +204,11 @@ class OCRExtractor(BaseExtractor):
         # Rough estimation: height in pixels to points
         # Assuming 72 DPI for points, and we're at self.dpi
         return (height * 72) / self.dpi
+    
+    def _check_tesseract(self) -> bool:
+        """Check if Tesseract is available"""
+        try:
+            pytesseract.get_tesseract_version()
+            return True
+        except Exception:
+            return False
