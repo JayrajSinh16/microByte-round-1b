@@ -76,7 +76,7 @@ class ResultBuilder:
         return result
     
     def _create_concise_summary(self, text: str) -> str:
-        """Create a concise, readable summary of the text"""
+        """Create a concise, readable summary of the text with persona-aware synthesis"""
         if not text:
             return ""
         
@@ -89,10 +89,16 @@ class ResultBuilder:
         
         # Split into sentences and extract key ones
         sentences = self._split_into_sentences(text)
-        key_sentences = self._extract_key_sentences(sentences)
         
-        # Combine and ensure readability
-        summary = ' '.join(key_sentences)
+        # Synthesize content instead of just extracting sentences
+        synthesized_content = self._synthesize_actionable_content(sentences, text)
+        
+        # If synthesis produces good content, use it; otherwise fall back to key sentences
+        if synthesized_content and len(synthesized_content) > 100:
+            summary = synthesized_content
+        else:
+            key_sentences = self._extract_key_sentences(sentences)
+            summary = ' '.join(key_sentences)
         
         # Ensure summary is comprehensive for travel planning
         if len(summary) > 800:
@@ -231,6 +237,180 @@ class ResultBuilder:
                 key_sentences.insert(0, sentences[0])
         
         return key_sentences[:8]  # Max 8 sentences for comprehensive coverage
+
+    def _synthesize_actionable_content(self, sentences: List[str], full_text: str) -> str:
+        """Synthesize content into coherent, actionable paragraphs for travel planning"""
+        import re
+        
+        if not sentences:
+            return ""
+        
+        # Extract specific actionable information
+        places = self._extract_specific_places(full_text)
+        activities = self._extract_specific_activities(full_text)
+        dining = self._extract_specific_dining(full_text)
+        practical_info = self._extract_practical_info(full_text)
+        
+        # Build synthesized paragraphs
+        paragraphs = []
+        
+        # Places and destinations paragraph
+        if places:
+            place_text = f"Key destinations include {', '.join(places[:5])}."
+            if len(places) > 5:
+                place_text += f" Additional notable locations are {', '.join(places[5:8])}."
+            paragraphs.append(place_text)
+        
+        # Activities paragraph
+        if activities:
+            activity_text = f"Popular activities feature {', '.join(activities[:4])}."
+            if len(activities) > 4:
+                activity_text += f" Visitors can also enjoy {', '.join(activities[4:7])}."
+            paragraphs.append(activity_text)
+        
+        # Dining paragraph
+        if dining:
+            dining_text = f"Dining highlights include {', '.join(dining[:4])}."
+            paragraphs.append(dining_text)
+        
+        # Practical information paragraph
+        if practical_info:
+            practical_text = " ".join(practical_info[:2])
+            if practical_text:
+                paragraphs.append(practical_text)
+        
+        # Combine paragraphs
+        synthesized = " ".join(paragraphs)
+        
+        # If we don't have enough synthesized content, enhance with key sentences
+        if len(synthesized) < 200 and sentences:
+            key_sentences = self._extract_key_sentences(sentences)
+            if key_sentences:
+                additional_context = " ".join(key_sentences[:2])
+                if synthesized:
+                    synthesized = f"{synthesized} {additional_context}"
+                else:
+                    synthesized = additional_context
+        
+        return synthesized
+
+    def _extract_specific_places(self, text: str) -> List[str]:
+        """Extract specific place names from text"""
+        import re
+        
+        places = []
+        text_lower = text.lower()
+        
+        # Common place patterns for travel content
+        place_patterns = [
+            r'\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s+(?:Beach|Bay|Island|Peninsula|Coast|Village|Town|City)\b',
+            r'\b(?:visit|explore|discover)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\b',
+            r'\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s+(?:is|features|offers|provides)\b',
+            r'\bthe\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*(?:\s+(?:Museum|Gallery|Cathedral|Palace|Castle|Park|Garden))?)\b'
+        ]
+        
+        for pattern in place_patterns:
+            matches = re.findall(pattern, text)
+            for match in matches:
+                if len(match) > 3 and len(match) < 50:  # Reasonable place name length
+                    places.append(match)
+        
+        # Remove duplicates while preserving order
+        seen = set()
+        unique_places = []
+        for place in places:
+            if place.lower() not in seen:
+                seen.add(place.lower())
+                unique_places.append(place)
+        
+        return unique_places[:8]
+
+    def _extract_specific_activities(self, text: str) -> List[str]:
+        """Extract specific activities from text"""
+        import re
+        
+        activities = []
+        
+        # Activity patterns
+        activity_patterns = [
+            r'\b(?:go|try|enjoy|experience)\s+([a-z]+(?:\s+[a-z]+)*(?:ing|ion)?)\b',
+            r'\b([a-z]+(?:\s+[a-z]+)*(?:ing|ion)?)\s+(?:tours?|excursions?|trips?|experiences?)\b',
+            r'\b(?:popular|famous|renowned)\s+for\s+([a-z]+(?:\s+[a-z]+)*)\b',
+            r'\b([a-z]+(?:\s+[a-z]+)*)\s+(?:activities?|attractions?|adventures?)\b'
+        ]
+        
+        for pattern in activity_patterns:
+            matches = re.findall(pattern, text.lower())
+            for match in matches:
+                if len(match) > 3 and len(match) < 30:
+                    # Clean up the activity name
+                    activity = match.strip()
+                    if activity and activity not in ['the', 'and', 'for', 'with', 'from']:
+                        activities.append(activity)
+        
+        # Remove duplicates
+        seen = set()
+        unique_activities = []
+        for activity in activities:
+            if activity not in seen:
+                seen.add(activity)
+                unique_activities.append(activity)
+        
+        return unique_activities[:6]
+
+    def _extract_specific_dining(self, text: str) -> List[str]:
+        """Extract specific dining establishments and food types"""
+        import re
+        
+        dining = []
+        
+        # Restaurant and food patterns
+        dining_patterns = [
+            r'\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s+(?:Restaurant|Café|Bistro|Bar|Brasserie)\b',
+            r'\b(?:try|taste|enjoy)\s+([a-z]+(?:\s+[a-z]+)*)\s+(?:cuisine|food|dishes?)\b',
+            r'\b(?:famous|renowned|popular)\s+for\s+(?:its\s+)?([a-z]+(?:\s+[a-z]+)*)\s+(?:cuisine|food|dishes?)\b',
+            r'\btraditional\s+([a-z]+(?:\s+[a-z]+)*)\b'
+        ]
+        
+        for pattern in dining_patterns:
+            matches = re.findall(pattern, text)
+            for match in matches:
+                if len(match) > 3 and len(match) < 40:
+                    dining.append(match)
+        
+        # Remove duplicates
+        seen = set()
+        unique_dining = []
+        for item in dining:
+            if item.lower() not in seen:
+                seen.add(item.lower())
+                unique_dining.append(item)
+        
+        return unique_dining[:5]
+
+    def _extract_practical_info(self, text: str) -> List[str]:
+        """Extract practical travel information"""
+        import re
+        
+        practical = []
+        
+        # Look for sentences with practical information
+        sentences = self._split_into_sentences(text)
+        
+        practical_keywords = [
+            'opening hours', 'admission', 'cost', 'price', 'booking', 'reservation',
+            'how to get', 'transport', 'bus', 'train', 'metro', 'taxi',
+            'best time', 'season', 'weather', 'temperature', 'tips', 'advice'
+        ]
+        
+        for sentence in sentences:
+            sentence_lower = sentence.lower()
+            for keyword in practical_keywords:
+                if keyword in sentence_lower and len(sentence) < 150:
+                    practical.append(sentence.strip())
+                    break
+        
+        return practical[:3]
     
     def _trim_to_length(self, text: str, max_length: int) -> str:
         """Trim text to maximum length at sentence boundary"""
