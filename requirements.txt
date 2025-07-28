@@ -11,11 +11,16 @@ opencv-python
 scikit-learn
 numpy 
 pandas
+torch
+sentence-transformers
+transformers
+spacy
 
 # Text Processing
 python-Levenshtein 
 rapidfuzz
 regex
+nltk
 
 # Utilities
 tqdm 

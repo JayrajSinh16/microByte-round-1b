@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  adobe-round-1b:
+    build: .
+    container_name: adobe-round-1b-app
+    volumes:
+      # Mount input directory for documents
+      - ./input:/app/input
+      # Mount output directory for results
+      - ./output:/app/output
+      # Mount cache directory to persist models between runs
+      - adobe-cache:/app/cache
+      - adobe-models:/app/models
+    environment:
+      - PYTHONPATH=/app
+      - TRANSFORMERS_CACHE=/app/cache/transformers
+      - SENTENCE_TRANSFORMERS_HOME=/app/cache/sentence_transformers
+      - HF_HOME=/app/cache/huggingface
+      - TORCH_HOME=/app/cache/torch
+      - NLTK_DATA=/app/cache/nltk_data
+      - DEBUG=false
+    ports:
+      - "8080:8080" # If you add a web interface later
+    restart: unless-stopped
+
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: '2.0'
+        reservations:
+          memory: 2G
+          cpus: '1.0'
+
+volumes:
+  adobe-cache:
+    driver: local
+  adobe-models:
+    driver: local

@@ -8,6 +8,16 @@ env/
 venv/
 .env
 
+# Git and version control
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+DOCKER_SETUP.md
+*.md
+
 # Testing
 .pytest_cache/
 .coverage
@@ -18,6 +28,48 @@ htmlcov/
 # IDEs
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
+
+# OS specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Output and cache directories (will be mounted as volumes)
+output/*
+cache/*
+models/sentence_transformer/*
+
+# Test files
+test_*
+*_test.py
+debug_*
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Environment files
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
 *.swp
 *.swo
 *~
