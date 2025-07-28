@@ -1,0 +1,209 @@
+{
+  "title": "Churros",
+  "outline": [
+    {
+      "level": "H1",
+      "text": "Coconut Rice",
+      "page": 1
+    },
+    {
+      "level": "H1",
+      "text": "Coleslaw",
+      "page": 1
+    },
+    {
+      "level": "H1",
+      "text": "Cornbread",
+      "page": 2
+    },
+    {
+      "level": "H1",
+      "text": "Coxinha",
+      "page": 2
+    },
+    {
+      "level": "H1",
+      "text": "Croque Monsieur",
+      "page": 2
+    },
+    {
+      "level": "H1",
+      "text": "Croquetas",
+      "page": 3
+    },
+    {
+      "level": "H1",
+      "text": "Dal Tadka",
+      "page": 3
+    },
+    {
+      "level": "H1",
+      "text": "Deviled Eggs",
+      "page": 4
+    },
+    {
+      "level": "H1",
+      "text": "Dolmas",
+      "page": 4
+    },
+    {
+      "level": "H1",
+      "text": "Dumplings",
+      "page": 4
+    },
+    {
+      "level": "H1",
+      "text": "Edamame",
+      "page": 5
+    },
+    {
+      "level": "H1",
+      "text": "Egusi Soup",
+      "page": 5
+    },
+    {
+      "level": "H1",
+      "text": "Egg Rolls",
+      "page": 6
+    },
+    {
+      "level": "H1",
+      "text": "Elote",
+      "page": 6
+    },
+    {
+      "level": "H1",
+      "text": "Empanadas",
+      "page": 6
+    },
+    {
+      "level": "H1",
+      "text": "Escalivada",
+      "page": 7
+    },
+    {
+      "level": "H1",
+      "text": "Falafel",
+      "page": 7
+    },
+    {
+      "level": "H1",
+      "text": "Farofa",
+      "page": 8
+    },
+    {
+      "level": "H1",
+      "text": "Fattoush",
+      "page": 8
+    },
+    {
+      "level": "H1",
+      "text": "Fava",
+      "page": 8
+    },
+    {
+      "level": "H1",
+      "text": "Tropeiro",
+      "page": 9
+    },
+    {
+      "level": "H1",
+      "text": "Festival",
+      "page": 9
+    },
+    {
+      "level": "H1",
+      "text": "Focaccia",
+      "page": 9
+    },
+    {
+      "level": "H1",
+      "text": "Rosemary o Sea salt",
+      "page": 10
+    },
+    {
+      "level": "H1",
+      "text": "Freekeh Salad",
+      "page": 10
+    },
+    {
+      "level": "H1",
+      "text": "Fried Plantains",
+      "page": 10
+    },
+    {
+      "level": "H1",
+      "text": "Fried Rice",
+      "page": 10
+    },
+    {
+      "level": "H1",
+      "text": "Fufu",
+      "page": 11
+    },
+    {
+      "level": "H1",
+      "text": "Gamja Jorim",
+      "page": 11
+    },
+    {
+      "level": "H1",
+      "text": "Garlic Bread",
+      "page": 11
+    },
+    {
+      "level": "H1",
+      "text": "Gazpacho",
+      "page": 12
+    },
+    {
+      "level": "H1",
+      "text": "Gigantes Plaki",
+      "page": 12
+    },
+    {
+      "level": "H1",
+      "text": "Gratin Dauphinois",
+      "page": 13
+    },
+    {
+      "level": "H1",
+      "text": "Greek Salad",
+      "page": 14
+    },
+    {
+      "level": "H1",
+      "text": "Green Bean Casserole",
+      "page": 14
+    },
+    {
+      "level": "H1",
+      "text": "Guacamole",
+      "page": 14
+    },
+    {
+      "level": "H1",
+      "text": "o 3 avocados o 1 lime",
+      "page": 14
+    },
+    {
+      "level": "H1",
+      "text": "Gyeran Jjim",
+      "page": 15
+    },
+    {
+      "level": "H1",
+      "text": "Harira",
+      "page": 15
+    }
+  ],
+  "metadata": {
+    "total_headings": 39,
+    "has_toc": false,
+    "confidence_stats": {
+      "mean": 0.953,
+      "min": 0.641,
+      "max": 0.97
+    }
+  }
+}

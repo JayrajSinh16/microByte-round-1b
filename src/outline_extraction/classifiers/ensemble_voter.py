@@ -17,11 +17,12 @@ class EnsembleVoter:
         
         # Default weights for strategies
         self.default_weights = {
-            'universal': 0.5,  # Give universal strategy highest weight
-            'font': 0.2,
-            'pattern': 0.15,
-            'ml': 0.1,
-            'structural': 0.05,
+            'universal_document': 0.6,  # NEW: Give our universal document strategy highest weight
+            'universal': 0.2,           # Reduce original universal weight
+            'font': 0.1,
+            'pattern': 0.05,
+            'ml': 0.03,
+            'structural': 0.02,
             'semantic': 0.0  # Disable for now
         }
     
@@ -49,7 +50,9 @@ class EnsembleVoter:
                 'is_heading': 0.0,
                 'not_heading': 0.0,
                 'levels': defaultdict(float),
-                'confidences': []
+                'confidences': [],
+                'text_override': None,  # For storing text from highest-weighted strategy
+                'best_text_weight': 0.0
             }
             
             block_id = None
@@ -68,6 +71,11 @@ class EnsembleVoter:
                 # Vote on heading/not heading
                 if pred.get('is_heading', False):
                     votes['is_heading'] += weight * pred.get('confidence', 1.0)
+                    
+                    # Check if this strategy has text override and higher weight
+                    if pred.get('text') and weight > votes['best_text_weight']:
+                        votes['text_override'] = pred['text']
+                        votes['best_text_weight'] = weight
                     
                     # Vote on level if provided
                     if pred.get('level'):
@@ -90,7 +98,7 @@ class EnsembleVoter:
                 votes, strategy_predictions, block_idx
             )
             
-            final_predictions.append({
+            final_prediction = {
                 'block_id': block_id,
                 'is_heading': is_heading,
                 'level': level,
@@ -100,7 +108,13 @@ class EnsembleVoter:
                     'not_heading_score': votes['not_heading'],
                     'level_votes': dict(votes['levels'])
                 }
-            })
+            }
+            
+            # Add text override if available
+            if votes['text_override']:
+                final_prediction['text'] = votes['text_override']
+                
+            final_predictions.append(final_prediction)
         # Post-process: classify hierarchy levels
         if blocks:
             headings = [p for p in final_predictions if p['is_heading']]

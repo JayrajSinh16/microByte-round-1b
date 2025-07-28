@@ -1,7 +1,7 @@
 # src/ranking_engine/__init__.py
 from typing import Dict, List
 from .scorers import TFIDFScorer, BM25Scorer, SemanticScorer, StructuralScorer, DomainAwareScorer
-from .filters import KeywordFilter, LengthFilter, RelevanceFilter, SemanticSectionFilter
+from .filters import KeywordFilter, LengthFilter, RelevanceFilter, SemanticSectionFilter, ConstraintFilter
 from .rankers import EnsembleRanker, CrossDocRanker, FinalRanker
 from .embeddings import EmbeddingManager
 
@@ -16,7 +16,8 @@ class RankingEngine:
         self.structural_scorer = StructuralScorer()
         self.domain_aware_scorer = DomainAwareScorer()
         
-        # Initialize filters
+        # Initialize filters - constraint filter MUST be first
+        self.constraint_filter = ConstraintFilter()
         self.keyword_filter = KeywordFilter()
         self.length_filter = LengthFilter()
         self.relevance_filter = RelevanceFilter()
@@ -47,7 +48,10 @@ class RankingEngine:
         return final_ranked
     
     def _apply_filters(self, sections: List[Dict], query_profile: Dict) -> List[Dict]:
-        """Apply filtering stages with semantic scoring"""
+        """Apply filtering stages with constraint filtering FIRST"""
+        # CRITICAL: Apply constraint filter FIRST before any other processing
+        sections = self.constraint_filter.filter_by_constraints(sections, query_profile)
+        
         # Length filter
         sections = self.length_filter.filter(sections)
         

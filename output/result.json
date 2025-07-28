@@ -1,80 +1,72 @@
 {
   "metadata": {
     "input_documents": [
-      "South of France - Cities.pdf",
-      "South of France - Cuisine.pdf",
-      "South of France - History.pdf",
-      "South of France - Restaurants and Hotels.pdf",
-      "South of France - Things to Do.pdf",
-      "South of France - Tips and Tricks.pdf",
-      "South of France - Traditions and Culture.pdf"
+      "Breakfast Ideas.pdf",
+      "Dinner Ideas - Mains_1.pdf",
+      "Dinner Ideas - Mains_2.pdf",
+      "Dinner Ideas - Mains_3.pdf",
+      "Dinner Ideas - Sides_1.pdf",
+      "Dinner Ideas - Sides_2.pdf",
+      "Dinner Ideas - Sides_3.pdf",
+      "Dinner Ideas - Sides_4.pdf",
+      "Lunch Ideas.pdf"
     ],
-    "persona": "Travel Planner",
-    "job_to_be_done": "Plan a trip of 4 days for a group of 10 college friends.",
-    "processing_timestamp": "2025-07-27T20:13:34.231636"
+    "persona": "Food Contractor",
+    "job_to_be_done": "Prepare a vegetarian buffet-style dinner menu for a corporate gathering, including gluten-free items.",
+    "processing_timestamp": "2025-07-28T08:52:10.925604"
   },
   "extracted_sections": [
     {
-      "document": "South of France - Tips and Tricks.pdf",
-      "section_title": "Wine Tours",
+      "document": "Dinner Ideas - Sides_1.pdf",
+      "section_title": "Baba Ganoush",
       "importance_rank": 1,
-      "page_number": 7
-    },
-    {
-      "document": "South of France - Cuisine.pdf",
-      "section_title": "Culinary Experiences",
-      "importance_rank": 2,
-      "page_number": 6
-    },
-    {
-      "document": "South of France - Things to Do.pdf",
-      "section_title": "Water Activities",
-      "importance_rank": 3,
       "page_number": 4
     },
     {
-      "document": "South of France - Tips and Tricks.pdf",
-      "section_title": "Winter (December to February)",
-      "importance_rank": 4,
-      "page_number": 3
+      "document": "Dinner Ideas - Sides_2.pdf",
+      "section_title": "Fattoush",
+      "importance_rank": 2,
+      "page_number": 8
     },
     {
-      "document": "South of France - Tips and Tricks.pdf",
-      "section_title": "General Packing Tips and Tricks",
+      "document": "Dinner Ideas - Sides_3.pdf",
+      "section_title": "Miso Soup",
+      "importance_rank": 3,
+      "page_number": 11
+    },
+    {
+      "document": "Dinner Ideas - Sides_4.pdf",
+      "section_title": "Plantain Chips",
+      "importance_rank": 4,
+      "page_number": 4
+    },
+    {
+      "document": "Dinner Ideas - Sides_2.pdf",
+      "section_title": "Gyeran Jjim",
       "importance_rank": 5,
-      "page_number": 2
+      "page_number": 15
     }
   ],
   "subsection_analysis": [
     {
-      "document": "South of France - Cuisine.pdf",
-      "refined_text": "In addition to dining at top restaurants, there are several culinary experiences you should consider: Cooking Classes: Many towns and cities in the South of France offer cooking classes where you can learn to prepare traditional dishes like bouillabaisse, ratatouille, and tarte tropézienne.",
-      "page_number": 6
-    },
-    {
-      "document": "South of France - Cities.pdf",
-      "refined_text": "Best Time to Visit: The best time to visit the South of France is during the spring (April to June) and fall (September to October) when the weather is pleasant, and the tourist crowds are smaller Transportation: The region is well-connected by an extensive network of trains, buses, and flights Renting a car is also a great option for exploring the countryside and smaller towns Language: While French is the official language, English is widely spoken in tourist areas Learning a few basic French phrases can enhance your travel experience Marseille: The Oldest City in France History Marseille, founded by Greek sailors around 600 BC, is the oldest city in France Its strategic location on the Mediterranean coast made it a vital trading port throughout history The city's rich cultural heritage is reflected in its diverse architecture and vibrant atmosphere Over the centuries, Marseille has been influenced by various cultures, including Greek, Roman, and North African, making it a melting pot of traditions and customs Key Attractions Old Port (Vieux-Port): The heart of Marseille, the Old Port has been a bustling harbor for over 2,600 years.",
-      "page_number": 2
-    },
-    {
-      "document": "South of France - Cuisine.pdf",
-      "refined_text": "To truly experience the culinary delights of the South of France, here are some restaurants you should consider visiting: Le Petit Nice Passedat (Marseille): A three-Michelin-starred restaurant offering exquisite seafood dishes and stunning views of the Mediterranean.",
+      "document": "Dinner Ideas - Sides_1.pdf",
+      "refined_text": "Baked Beans Ingredients: o 4 cups cooked navy beans o 1 small onion o 1/2 cup molasses o 1/4 cup brown sugar o 1/4 cup ketchup o 1 tablespoon mustard o 1 teaspoon salt o 1/2 teaspoon pepper Instructions: o Preheat oven to 350°F (175°C).",
       "page_number": 4
     },
     {
-      "document": "South of France - Cities.pdf",
-      "refined_text": "MuCEM (Museum of European and Mediterranean Civilizations): This modern museum explores the cultural history of the Mediterranean region through a variety of exhibits and interactive displays.",
+      "document": "Dinner Ideas - Sides_4.pdf",
+      "refined_text": "o 4 tomatoes o 1 small onion o 1 jalapeño o 1/4 cup cilantro o 1 lime o 1 teaspoon salt Instructions: o Dice tomatoes, onion, and jalapeño. o Chop cilantro. o Combine all ingredients in a bowl. o Squeeze lime juice over the mixture and add salt. o Mix well and serve.",
       "page_number": 3
     },
     {
-      "document": "South of France - Restaurants and Hotels.pdf",
-      "refined_text": "Grand-Hôtel du Cap-Ferrat, A Four Seasons Hotel (Saint-Jean-Cap-Ferrat): A luxurious hotel set on 7 hectares of Mediterranean gardens, offering elegant rooms, a spa, and a private beach The exclusive setting and world-class amenities make it a top choice for luxury travelers Hôtel de Paris Monte-Carlo (Monaco): A luxurious hotel located in the heart of Monaco, offering opulent rooms, a world-class spa, and several Michelin-starred restaurants The historic grandeur and exceptional service make it a premier destination Château Saint-Martin & Spa (Vence): A luxurious hotel set in a historic château, offering elegant rooms, a Michelin-starred restaurant, and a world-class spa The tranquil setting and luxurious amenities make it a perfect getaway Airelles Château de la Messardière (Saint-Tropez): A luxurious hotel set in a historic château, offering elegant rooms, beautiful gardens, and stunning views of the Mediterranean The refined ambiance and top-tier services make it a standout choice for luxury accommodations Hôtel du Cap-Eden-Roc (Antibes): A legendary hotel offering luxurious rooms, a private beach, and a world-class spa The stunning location and impeccable service make it a favorite among celebrities and discerning travelers.",
-      "page_number": 12
+      "document": "Dinner Ideas - Sides_2.pdf",
+      "refined_text": "Green Bean Casserole Ingredients: o 4 cups green beans o 1 can cream of mushroom soup o 1/2 cup milk o 1 cup fried onions o 1 teaspoon salt o 1/2 teaspoon pepper Instructions: o Preheat oven to 350°F (175°C). o Cook green beans until tender. o Mix soup, milk, salt, and pepper in a baking dish. o Add green beans and half of the fried onions, stir to combine. o Bake for 25 minutes. o Top with remaining fried onions and bake for an additional 5 minutes. o Serve warm.",
+      "page_number": 14
     },
     {
-      "document": "South of France - Things to Do.pdf",
-      "refined_text": "Here are some activities to enjoy by the sea: Beach Hopping Nice: Visit the sandy shores and enjoy the vibrant Promenade des Anglais.",
-      "page_number": 2
+      "document": "Dinner Ideas - Mains_1.pdf",
+      "refined_text": "Ingredients: 1 eggplant, diced 1 zucchini, diced 1 bell pepper, diced 1 small onion, diced 2 cloves garlic, minced 4 tomatoes, diced.",
+      "page_number": 15
     }
   ]
 }

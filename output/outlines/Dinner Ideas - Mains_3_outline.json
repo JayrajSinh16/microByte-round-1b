@@ -1,0 +1,149 @@
+{
+  "title": "Peking Duck",
+  "outline": [
+    {
+      "level": "H1",
+      "text": "Mandarin pancakes for serving",
+      "page": 1
+    },
+    {
+      "level": "H1",
+      "text": "Pork Schnitzel",
+      "page": 1
+    },
+    {
+      "level": "H1",
+      "text": "Salt and pepper to taste",
+      "page": 1
+    },
+    {
+      "level": "H1",
+      "text": "Quiche Lorraine",
+      "page": 2
+    },
+    {
+      "level": "H1",
+      "text": "Ramen",
+      "page": 2
+    },
+    {
+      "level": "H1",
+      "text": "Roast Beef",
+      "page": 3
+    },
+    {
+      "level": "H1",
+      "text": "Salt and pepper to taste",
+      "page": 3
+    },
+    {
+      "level": "H1",
+      "text": "Salmon en Papillote",
+      "page": 3
+    },
+    {
+      "level": "H1",
+      "text": "Parchment paper",
+      "page": 3
+    },
+    {
+      "level": "H1",
+      "text": "Baked Ziti",
+      "page": 4
+    },
+    {
+      "level": "H1",
+      "text": "Salt and pepper to taste",
+      "page": 4
+    },
+    {
+      "level": "H1",
+      "text": "Butter Chicken",
+      "page": 4
+    },
+    {
+      "level": "H1",
+      "text": "Cooked rice or naan for serving",
+      "page": 4
+    },
+    {
+      "level": "H1",
+      "text": "Chili Con Carne",
+      "page": 5
+    },
+    {
+      "level": "H1",
+      "text": "Gnocchi with Sage Butter",
+      "page": 5
+    },
+    {
+      "level": "H1",
+      "text": "Salt and pepper to taste",
+      "page": 5
+    },
+    {
+      "level": "H1",
+      "text": "Honey Garlic Pork Ribs",
+      "page": 6
+    },
+    {
+      "level": "H1",
+      "text": "Sliced green onions for garnish",
+      "page": 6
+    },
+    {
+      "level": "H1",
+      "text": "Moroccan Chicken Tagine",
+      "page": 6
+    },
+    {
+      "level": "H1",
+      "text": "Cooked couscous for serving",
+      "page": 7
+    },
+    {
+      "level": "H1",
+      "text": "Mushroom Risotto",
+      "page": 7
+    },
+    {
+      "level": "H1",
+      "text": "Chopped parsley for garnish",
+      "page": 7
+    },
+    {
+      "level": "H1",
+      "text": "Pulled Pork Sandwiches",
+      "page": 7
+    },
+    {
+      "level": "H1",
+      "text": "Stuffed Chicken Breasts",
+      "page": 8
+    },
+    {
+      "level": "H1",
+      "text": "Salt and pepper to taste",
+      "page": 8
+    },
+    {
+      "level": "H1",
+      "text": "Vegetable Lasagna",
+      "page": 8
+    },
+    {
+      "level": "H1",
+      "text": "Salt and pepper to taste",
+      "page": 9
+    }
+  ],
+  "metadata": {
+    "total_headings": 27,
+    "has_toc": false,
+    "confidence_stats": {
+      "mean": 0.97,
+      "min": 0.97,
+      "max": 0.97
+    }
+  }
+}

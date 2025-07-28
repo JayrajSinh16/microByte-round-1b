@@ -1,75 +1,77 @@
 {
     "metadata": {
         "input_documents": [
-            "South of France - Cities.pdf",
-            "South of France - Cuisine.pdf",
-            "South of France - History.pdf",
-            "South of France - Restaurants and Hotels.pdf",
-            "South of France - Things to Do.pdf",
-            "South of France - Tips and Tricks.pdf",
-            "South of France - Traditions and Culture.pdf"
+            "Breakfast Ideas.pdf",
+            "Dinner Ideas - Mains_1.pdf",
+            "Dinner Ideas - Mains_2.pdf",
+            "Dinner Ideas - Mains_3.pdf",
+            "Dinner Ideas - Sides_1.pdf",
+            "Dinner Ideas - Sides_2.pdf",
+            "Dinner Ideas - Sides_3.pdf",
+            "Dinner Ideas - Sides_4.pdf",
+            "Lunch Ideas.pdf"
         ],
-        "persona": "Travel Planner",
-        "job_to_be_done": "Plan a trip of 4 days for a group of 10 college friends.",
-        "processing_timestamp": "2025-07-10T15:31:22.632389"
+        "persona": "Food Contractor",
+        "job_to_be_done": "Prepare a vegetarian buffet-style dinner menu for a corporate gathering, including gluten-free items.",
+        "processing_timestamp": "2025-07-10T15:40:14.642503"
     },
     "extracted_sections": [
         {
-            "document": "South of France - Cities.pdf",
-            "section_title": "Comprehensive Guide to Major Cities in the South of France",
+            "document": "Dinner Ideas - Sides_2.pdf",
+            "section_title": "Falafel",
             "importance_rank": 1,
-            "page_number": 1
+            "page_number": 7
         },
         {
-            "document": "South of France - Things to Do.pdf",
-            "section_title": "Coastal Adventures",
+            "document": "Dinner Ideas - Sides_3.pdf",
+            "section_title": "Ratatouille",
             "importance_rank": 2,
-            "page_number": 2
+            "page_number": 8
         },
         {
-            "document": "South of France - Cuisine.pdf",
-            "section_title": "Culinary Experiences",
+            "document": "Dinner Ideas - Sides_1.pdf",
+            "section_title": "Baba Ganoush",
             "importance_rank": 3,
-            "page_number": 6
+            "page_number": 4
         },
         {
-            "document": "South of France - Tips and Tricks.pdf",
-            "section_title": "General Packing Tips and Tricks",
+            "document": "Lunch Ideas.pdf",
+            "section_title": "Veggie Sushi Rolls",
             "importance_rank": 4,
-            "page_number": 2
+            "page_number": 11
         },
         {
-            "document": "South of France - Things to Do.pdf",
-            "section_title": "Nightlife and Entertainment",
+            "document": "Dinner Ideas - Mains_2.pdf",
+            "section_title": "Vegetable Lasagna",
             "importance_rank": 5,
-            "page_number": 11
+            "page_number": 9
         }
     ],
     "subsection_analysis": [
         {
-            "document": "South of France - Things to Do.pdf",
-            "refined_text": "The South of France is renowned for its beautiful coastline along the Mediterranean Sea. Here are some activities to enjoy by the sea: Beach Hopping: Nice - Visit the sandy shores and enjoy the vibrant Promenade des Anglais; Antibes - Relax on the pebbled beaches and explore the charming old town; Saint-Tropez - Experience the exclusive beach clubs and glamorous atmosphere; Marseille to Cassis - Explore the stunning limestone cliffs and hidden coves of Calanques National Park; Îles d'Hyères - Discover pristine beaches and excellent snorkeling opportunities on islands like Porquerolles and Port-Cros; Cannes - Enjoy the sandy beaches and luxury beach clubs along the Boulevard de la Croisette; Menton - Visit the serene beaches and beautiful gardens in this charming town near the Italian border.",
-            "page_number": 2
+            "document": "Dinner Ideas - Sides_2.pdf",
+            "refined_text": "Escalivada Ingredients: 2 eggplants, 2 bell peppers, 2 tomatoes, 1 small onion, 1/4 cup olive oil, 1 teaspoon salt. Instructions: Preheat oven to 400°F (200°C). Roast eggplants, bell peppers, tomatoes, and onion until tender. Peel and slice vegetables. Arrange on a plate and drizzle with olive oil. Sprinkle with salt and serve warm or at room temperature.",
+            "page_number": 7
         },
         {
-            "document": "South of France - Cuisine.pdf",
-            "refined_text": "In addition to dining at top restaurants, there are several culinary experiences you should consider: Cooking Classes - Many towns and cities in the South of France offer cooking classes where you can learn to prepare traditional dishes like bouillabaisse, ratatouille, and tarte tropézienne. These classes are a great way to immerse yourself in the local culture and gain hands-on experience with regional recipes. Some classes even include a visit to a local market to shop for fresh ingredients. Wine Tours - The South of France is renowned for its wine regions, including Provence and Languedoc. Take a wine tour to visit vineyards, taste local wines, and learn about the winemaking process. Many wineries offer guided tours and tastings, giving you the opportunity to sample a variety of wines and discover new favorites.",
-            "page_number": 6
+            "document": "Dinner Ideas - Sides_2.pdf",
+            "refined_text": "Falafel Ingredients: 1 can chickpeas, 1 small onion, 2 cloves garlic, 1/4 cup parsley, 1 teaspoon cumin, 1 teaspoon coriander, 1 teaspoon salt, 1/4 cup flour, oil for frying. Instructions: Drain and rinse chickpeas. Blend chickpeas, diced onion, minced garlic, chopped parsley, cumin, coriander, and salt in a food processor. Add flour and mix until combined. Form mixture into balls and fry in hot oil until golden.",
+            "page_number": 7
         },
         {
-            "document": "South of France - Things to Do.pdf",
-            "refined_text": "The South of France offers a vibrant nightlife scene, with options ranging from chic bars to lively nightclubs: Bars and Lounges - Monaco: Enjoy classic cocktails and live jazz at Le Bar Americain, located in the Hôtel de Paris; Nice: Try creative cocktails at Le Comptoir du Marché, a trendy bar in the old town; Cannes: Experience dining and entertainment at La Folie Douce, with live music, DJs, and performances; Marseille: Visit Le Trolleybus, a popular bar with multiple rooms and music styles; Saint-Tropez: Relax at Bar du Port, known for its chic atmosphere and waterfront views. Nightclubs - Saint-Tropez: Dance at the famous Les Caves du Roy, known for its glamorous atmosphere and celebrity clientele; Nice: Party at High Club on the Promenade des Anglais, featuring multiple dance floors and top DJs; Cannes: Enjoy the stylish setting and rooftop terrace at La Suite, offering stunning views of Cannes.",
+            "document": "Dinner Ideas - Sides_1.pdf",
+            "refined_text": "Baba Ganoush Ingredients: 2 eggplants, 1/4 cup tahini, 1/4 cup lemon juice, 2 cloves garlic, 1/4 cup olive oil, 1 teaspoon salt. Instructions: Roast eggplants until soft, then peel and mash. Blend mashed eggplant, tahini, lemon juice, minced garlic, and salt in a food processor. Slowly add olive oil while blending until smooth. Serve with a drizzle of olive oil.",
+            "page_number": 4
+        },
+        {
+            "document": "Lunch Ideas.pdf",
+            "refined_text": "Veggie Sushi Rolls Ingredients: 1 cup cooked sushi rice, 1/2 cucumber (julienned), 1/2 avocado (sliced), 1/4 cup carrot (julienned), 2 sheets nori (seaweed), soy sauce for dipping. Instructions: Lay a sheet of nori on a bamboo sushi mat. Spread a thin layer of sushi rice over the nori, leaving a 1-inch border at the top. Arrange the cucumber, avocado, and carrot in a line along the bottom edge of the rice. Roll the nori tightly using the bamboo mat. Slice into bite-sized pieces and serve with soy sauce.",
             "page_number": 11
         },
         {
-            "document": "South of France - Things to Do.pdf",
-            "refined_text": "Water Sports: Cannes, Nice, and Saint-Tropez - Try jet skiing or parasailing for a thrill; Toulon - Dive into the underwater world with scuba diving excursions to explore wrecks; Cerbère-Banyuls - Visit the marine reserve for an unforgettable diving experience; Mediterranean Coast - Charter a yacht or join a sailing tour to explore the coastline and nearby islands; Marseille - Go windsurfing or kitesurfing in the windy bays; Port Grimaud - Rent a paddleboard and explore the canals of this picturesque village; La Ciotat - Try snorkeling in the clear waters around the Île Verte.",
-            "page_number": 2
-        },
-        {
-            "document": "South of France - Tips and Tricks.pdf",
-            "refined_text": "General Packing Tips and Tricks: Layering - The weather can vary, so pack layers to stay comfortable in different temperatures; Versatile Clothing - Choose items that can be mixed and matched to create multiple outfits, helping you pack lighter; Packing Cubes - Use packing cubes to organize your clothes and maximize suitcase space; Roll Your Clothes - Rolling clothes saves space and reduces wrinkles; Travel-Sized Toiletries - Bring travel-sized toiletries to save space and comply with airline regulations; Reusable Bags - Pack a few reusable bags for laundry, shoes, or shopping; First Aid Kit - Include a small first aid kit with band-aids, antiseptic wipes, and any necessary medications; Copies of Important Documents - Make copies of your passport, travel insurance, and other important documents. Keep them separate from the originals.",
-            "page_number": 2
+            "document": "Dinner Ideas - Sides_3.pdf",
+            "refined_text": "Macaroni and Cheese Ingredients: 2 cups elbow macaroni, 2 cups milk, 2 tablespoons butter, 2 tablespoons flour, 2 cups shredded cheddar cheese, 1 teaspoon salt, 1/2 teaspoon pepper. Instructions: Cook macaroni according to package instructions, then drain. Melt butter in a saucepan, stir in flour to make a roux. Gradually add milk, stirring constantly until thickened. Add cheese, salt, and pepper, stir until melted. Combine cheese sauce with macaroni. Serve warm.",
+            "page_number": 8
         }
     ]
 }

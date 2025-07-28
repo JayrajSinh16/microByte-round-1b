@@ -27,9 +27,12 @@ class OutlineBuilder:
                 block = next((b for b in blocks if b['id'] == pred['block_id']), None)
                 
                 if block:
+                    # Use overridden text from prediction if available (for recipe names)
+                    heading_text = pred.get('text', block['text'].strip())
+                    
                     heading = {
                         'level': pred.get('level', 'H2'),
-                        'text': block['text'].strip(),
+                        'text': heading_text,
                         'page': block.get('page', 1),
                         'confidence': pred.get('confidence', 0.0),
                         'block_id': block['id'],

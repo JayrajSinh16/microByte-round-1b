@@ -7,13 +7,15 @@ class ContentSynthesizer:
     """Advanced content synthesizer for high-quality, natural text generation"""
     
     def __init__(self):
-        # Sentence quality indicators
+        # Universal sentence quality indicators (not domain-specific)
         self.quality_indicators = [
-            r'\b(?:visit|explore|enjoy|experience|try|discover)\s+[A-Z][^.!?]*',  # Action + proper noun
-            r'\b(?:best|top|recommended|popular|famous)\s+[^.!?]*',  # Quality descriptions
-            r'\b(?:located|situated|address|phone|contact|hours)\s*:?\s*[^.!?]*',  # Practical info
-            r'\b\d+(?:\.\d+)?\s*(?:km|miles|hours|minutes|euros|\$|pounds)\b[^.!?]*',  # Specific measurements
-            r'\b[A-Z][a-zA-Z\s-]+(?:Beach|Bay|Island|City|Town|Village|Restaurant|Hotel|Bar|Club)\b[^.!?]*'  # Specific places
+            r'\b(?:provides?|offers?|includes?|contains?|features?)\s+[^.!?]*',  # Service descriptions
+            r'\b(?:best|top|recommended|popular|excellent|high-quality)\s+[^.!?]*',  # Quality descriptions
+            r'\b(?:located|situated|address|phone|contact|email|website)\s*:?\s*[^.!?]*',  # Contact info
+            r'\b\d+(?:\.\d+)?\s*(?:units?|items?|hours?|minutes?|dollars?|\$|percent|\%)\b[^.!?]*',  # Specific measurements
+            r'\b[A-Z][a-zA-Z\s-]+(?:Company|Corporation|Institute|Department|Center|Office|Building)\b[^.!?]*',  # Organizations
+            r'\b(?:ingredients?|materials?|tools?|equipment|requirements?)\s*:?\s*[^.!?]*',  # Lists and requirements
+            r'\b(?:step|phase|stage|process|procedure|method)\s+\d+[^.!?]*',  # Process descriptions
         ]
         
         # Patterns to avoid in synthesis
@@ -40,10 +42,10 @@ class ContentSynthesizer:
         
         for section in sections:
             content = section.get('content', '') or section.get('refined_text', '')
-            if not content or len(content.strip()) < 100:  # Skip very short content
+            if not content or len(content.strip()) < 50:  # Lowered threshold for universal content
                 continue
             
-            # CRITICAL: Filter content based on persona BEFORE synthesis
+            # Universal content filtering for quality
             persona_filtered_content = self._filter_content_by_persona(content, query_profile)
             
             if not persona_filtered_content:
@@ -291,27 +293,74 @@ class ContentSynthesizer:
         return ordered_selected
     
     def _build_persona_intent(self, query_profile: Dict) -> str:
-        """Build persona intent text for semantic comparison"""
+        """Build universal persona intent text for semantic comparison - works for any domain"""
         parts = []
         
-        # Get job description
+        # Get job description (primary intent source)
         job_data = query_profile.get('job', {})
         job_description = job_data.get('description', '') if isinstance(job_data, dict) else str(job_data)
         if job_description:
             parts.append(job_description)
         
-        # Get persona info
+        # Get persona info (role and context)
         persona_data = query_profile.get('persona', {})
         if isinstance(persona_data, dict):
             role = persona_data.get('role', '')
             if role:
                 parts.append(role)
+            
+            # Add any available persona fields universally
+            for field in ['specializations', 'focus_areas', 'keywords']:
+                field_data = persona_data.get(field, [])
+                if isinstance(field_data, list):
+                    parts.extend(field_data[:3])  # Limit to prevent bloat
+                elif field_data:
+                    parts.append(str(field_data))
         
-        # Add context expansion based on persona
-        if 'college' in job_description.lower() or 'friends' in job_description.lower():
-            parts.append("nightlife bars clubs social activities beaches entertainment young adults")
+        # Universal context expansion based on job analysis (not hardcoded patterns)
+        context_expansion = self._extract_universal_context(job_description, persona_data)
+        if context_expansion:
+            parts.append(context_expansion)
         
         return ' '.join(parts)
+    
+    def _extract_universal_context(self, job_description: str, persona_data: Dict) -> str:
+        """Extract universal context keywords from job and persona without hardcoded domain patterns"""
+        context_keywords = []
+        job_lower = job_description.lower()
+        
+        # Universal professional context patterns
+        role = persona_data.get('role', '') if isinstance(persona_data, dict) else ''
+        role_lower = role.lower()
+        
+        # Business contexts
+        if any(term in job_lower for term in ['business', 'corporate', 'company', 'enterprise']):
+            context_keywords.extend(['professional', 'business', 'corporate'])
+        
+        if any(term in job_lower for term in ['analysis', 'analyze', 'research', 'data']):
+            context_keywords.extend(['analytical', 'detailed', 'comprehensive'])
+        
+        # Event and planning contexts  
+        if any(term in job_lower for term in ['event', 'planning', 'organize', 'manage']):
+            context_keywords.extend(['organized', 'planned', 'structured'])
+        
+        if any(term in job_lower for term in ['menu', 'food', 'catering', 'dining']):
+            context_keywords.extend(['culinary', 'food service', 'dining'])
+        
+        # Educational contexts
+        if any(term in job_lower for term in ['education', 'training', 'learning', 'course']):
+            context_keywords.extend(['educational', 'instructional', 'informative'])
+        
+        # HR and people contexts
+        if any(term in role_lower for term in ['hr', 'human resources', 'recruitment']):
+            context_keywords.extend(['people management', 'organizational', 'team'])
+        
+        # Research contexts  
+        if any(term in role_lower for term in ['researcher', 'analyst', 'scientist']):
+            context_keywords.extend(['research based', 'evidence', 'factual'])
+        
+        # Remove duplicates and return
+        return ' '.join(list(set(context_keywords)))
     
     def _split_sentences_advanced(self, content: str) -> List[str]:
         """Advanced sentence splitting with better handling"""
@@ -406,65 +455,37 @@ class ContentSynthesizer:
         return result
     
     def _filter_content_by_persona(self, content: str, query_profile: Dict) -> str:
-        """Filter content to match persona requirements and exclude irrelevant content"""
-        if not query_profile:
+        """Universal content filtering that preserves relevant content without hardcoded domain patterns"""
+        if not query_profile or not content:
             return content
         
-        # Get persona context
-        job_data = query_profile.get('job', {})
-        job_description = job_data.get('description', '') if isinstance(job_data, dict) else str(job_data)
+        # For universal approach, perform minimal filtering focused on content quality
+        # rather than domain-specific exclusions that may not apply to all document types
         
-        # Detect persona type
-        is_college_friends = any(term in job_description.lower() 
-                               for term in ['college', 'friends', 'group', 'young'])
-        is_family = any(term in job_description.lower() 
-                       for term in ['family', 'children', 'kids'])
-        is_business = any(term in job_description.lower() 
-                         for term in ['business', 'corporate', 'conference'])
-        
-        # Split content into sentences for filtering
+        # Split content into sentences for basic quality filtering
         sentences = self._split_sentences_advanced(content)
         filtered_sentences = []
         
         for sentence in sentences:
-            sentence_lower = sentence.lower()
+            sentence = sentence.strip()
             
-            # EXCLUDE family content for college friends
-            if is_college_friends:
-                if any(term in sentence_lower for term in [
-                    'family-friendly', 'kid-friendly', 'children', 'kids', 'family meal',
-                    'kids club', 'family resort', 'child', 'toddler', 'baby'
-                ]):
-                    continue  # Skip family-oriented content
+            # Basic quality filters (universal)
+            if len(sentence) < 20:  # Skip very short fragments
+                continue
                 
-                # PREFER young adult / social content
-                if any(term in sentence_lower for term in [
-                    'nightlife', 'bar', 'club', 'party', 'social', 'beach', 'adventure',
-                    'group', 'friends', 'young', 'entertainment', 'fun'
-                ]):
-                    filtered_sentences.append(sentence)
-                    continue
-            
-            # EXCLUDE business content for casual trips
-            if not is_business and any(term in sentence_lower for term in [
-                'conference', 'meeting room', 'business center', 'corporate'
+            # Skip obvious noise patterns (universal)
+            if any(pattern in sentence.lower() for pattern in [
+                'click here', 'read more', 'see more', 'download pdf',
+                'terms and conditions', 'privacy policy'
             ]):
                 continue
             
-            # EXCLUDE family content for non-family personas
-            if not is_family and any(term in sentence_lower for term in [
-                'family-friendly', 'kid-friendly', 'children activities'
-            ]):
-                continue
-            
-            # Include general travel content
-            if any(term in sentence_lower for term in [
-                'visit', 'explore', 'experience', 'enjoy', 'discover', 'attraction',
-                'restaurant', 'hotel', 'location', 'destination', 'activity'
-            ]):
-                filtered_sentences.append(sentence)
+            # Keep sentences that contain substantive content
+            filtered_sentences.append(sentence)
         
-        return ' '.join(filtered_sentences)
+        # Return filtered content or original if filtering removed everything
+        filtered_content = ' '.join(filtered_sentences)
+        return filtered_content if filtered_content.strip() else content
     
     def _calculate_sentence_quality(self, sentence: str) -> float:
         """Calculate how valuable/actionable a sentence is"""
@@ -475,9 +496,9 @@ class ContentSynthesizer:
             if re.search(pattern, sentence, re.IGNORECASE):
                 score += 0.3
         
-        # Boost for specific information (names, numbers, locations)
-        if re.search(r'\b[A-Z][a-zA-Z\s-]+(?:Beach|Bay|Restaurant|Hotel|Bar|Club|Museum|Park)\b', sentence):
-            score += 0.4  # Specific place names
+        # Boost for specific information (names, numbers, organizations)
+        if re.search(r'\b[A-Z][a-zA-Z\s-]+(?:Company|Corporation|Institute|Department|Center|Office|Building|University)\b', sentence):
+            score += 0.4  # Specific organization names
         
         if re.search(r'\b\d+', sentence):
             score += 0.2  # Contains numbers
@@ -523,76 +544,59 @@ class ContentSynthesizer:
         return ' '.join(synthesis_parts)
     
     def _group_sentences_by_theme(self, sentences: List[str]) -> Dict[str, List[str]]:
-        """Group sentences by common themes/topics"""
+        """Group sentences by universal themes/topics - works for any domain"""
         themes = {
-            'locations': [],
-            'activities': [],
-            'dining': [],
-            'practical': [],
-            'other': []
+            'procedures': [],      # Steps, processes, methods
+            'specifications': [],  # Details, requirements, features  
+            'descriptions': [],    # General descriptive content
+            'quantitative': [],    # Numbers, measurements, data
+            'practical': []        # Contact info, logistics
         }
         
         for sentence in sentences:
             sentence_lower = sentence.lower()
             
-            # Classify by content theme
-            if any(word in sentence_lower for word in ['restaurant', 'food', 'dining', 'cuisine', 'bar', 'wine', 'cooking']):
-                themes['dining'].append(sentence)
-            elif any(word in sentence_lower for word in ['beach', 'coast', 'island', 'city', 'town', 'village', 'location']):
-                themes['locations'].append(sentence)
-            elif any(word in sentence_lower for word in ['activity', 'visit', 'explore', 'enjoy', 'experience', 'adventure']):
-                themes['activities'].append(sentence)
-            elif any(word in sentence_lower for word in ['address', 'hours', 'price', 'contact', 'phone', 'cost']):
+            # Universal categorization patterns
+            if any(word in sentence_lower for word in ['step', 'process', 'method', 'procedure', 'instruction', 'how to']):
+                themes['procedures'].append(sentence)
+            elif any(word in sentence_lower for word in ['requirement', 'specification', 'feature', 'includes', 'contains']):
+                themes['specifications'].append(sentence)
+            elif any(word in sentence_lower for word in ['address', 'hours', 'price', 'contact', 'phone', 'cost', 'email']):
                 themes['practical'].append(sentence)
+            elif re.search(r'\b\d+(?:\.\d+)?\s*(?:units?|items?|hours?|percent|\%|\$|dollars?)\b', sentence_lower):
+                themes['quantitative'].append(sentence)
             else:
-                themes['other'].append(sentence)
+                themes['descriptions'].append(sentence)
         
         # Remove empty themes
         return {k: v for k, v in themes.items() if v}
     
     def _create_coherent_text(self, sentences: List[str]) -> str:
-        """Rewrite sentences into coherent, natural text"""
+        """Create coherent, natural text from sentences - universal approach"""
         if not sentences:
             return ""
         
-        # Extract key information from all sentences
-        combined_info = self._extract_key_information(sentences)
+        # For universal synthesis, clean and combine sentences directly
+        # without domain-specific formatting assumptions
+        clean_sentences = []
         
-        # Create natural, human-readable synthesis
-        synthesis_parts = []
+        for sentence in sentences[:4]:  # Limit to prevent bloat
+            cleaned = self._clean_sentence(sentence)
+            if cleaned and len(cleaned) > 20:
+                clean_sentences.append(cleaned)
         
-        # Start with locations if available
-        if combined_info['locations']:
-            locations_text = self._format_location_list(combined_info['locations'][:3])
-            synthesis_parts.append(f"Key destinations include {locations_text}.")
+        if not clean_sentences:
+            return ""
         
-        # Add activities
-        if combined_info['activities']:
-            activities_text = self._format_activity_list(combined_info['activities'][:3])
-            synthesis_parts.append(f"Popular activities feature {activities_text}.")
-        
-        # Add dining information
-        if combined_info['dining']:
-            dining_text = self._format_dining_list(combined_info['dining'][:2])
-            synthesis_parts.append(f"Dining options include {dining_text}.")
-        
-        # Add practical details
-        if combined_info['details']:
-            details_text = '. '.join(combined_info['details'][:2])
-            synthesis_parts.append(details_text + '.')
-        
-        # If we have very little structured info, use the best original sentences
-        if not synthesis_parts and sentences:
-            # Clean and use the top 2-3 sentences directly
-            clean_sentences = []
-            for sent in sentences[:3]:
-                cleaned = self._clean_sentence(sent)
-                if cleaned and len(cleaned) > 20:
-                    clean_sentences.append(cleaned)
-            if clean_sentences:
-                synthesis_parts.extend(clean_sentences)
-        
-        return ' '.join(synthesis_parts)
+        # Simple, universal approach: combine cleaned sentences with proper spacing
+        if len(clean_sentences) == 1:
+            return clean_sentences[0]
+        elif len(clean_sentences) <= 3:
+            # Short content: combine into flowing paragraph
+            return ' '.join(clean_sentences)
+        else:
+            # Longer content: use structured format
+            return '. '.join(clean_sentences) + ('.' if not clean_sentences[-1].endswith('.') else '')
     
     def _clean_sentence(self, sentence: str) -> str:
         """Clean and normalize a sentence"""
@@ -607,55 +611,3 @@ class ContentSynthesizer:
             sentence += '.'
         
         return sentence
-    
-    def _format_location_list(self, locations: List[str]) -> str:
-        """Format a list of locations naturally"""
-        if len(locations) == 1:
-            return locations[0]
-        elif len(locations) == 2:
-            return f"{locations[0]} and {locations[1]}"
-        else:
-            return f"{', '.join(locations[:-1])}, and {locations[-1]}"
-    
-    def _format_activity_list(self, activities: List[str]) -> str:
-        """Format a list of activities naturally"""
-        return ', '.join(activities)
-    
-    def _format_dining_list(self, dining: List[str]) -> str:
-        """Format a list of dining options naturally"""
-        return ', '.join(dining)
-    
-    def _extract_key_information(self, sentences: List[str]) -> Dict[str, List[str]]:
-        """Extract key information elements from sentences"""
-        info = {
-            'locations': [],
-            'activities': [],
-            'dining': [],
-            'details': []
-        }
-        
-        for sentence in sentences:
-            # Extract location names
-            location_matches = re.findall(r'\b([A-Z][a-zA-Z\s-]+(?:Beach|Bay|Island|City|Town|Village|Restaurant|Hotel|Bar|Club|Museum|Park))\b', sentence)
-            info['locations'].extend(location_matches)
-            
-            # Extract activities/actions
-            activity_matches = re.findall(r'\b(?:visit|explore|enjoy|experience|try|discover)\s+([^.!?,:;]+)', sentence, re.IGNORECASE)
-            info['activities'].extend([match.strip() for match in activity_matches])
-            
-            # Extract dining information
-            if any(word in sentence.lower() for word in ['restaurant', 'bar', 'cafe', 'dining', 'food', 'cuisine']):
-                dining_matches = re.findall(r'\b([A-Z][a-zA-Z\s-]+(?:Restaurant|Bar|Cafe|Bistro|Club))\b', sentence)
-                info['dining'].extend(dining_matches)
-            
-            # Extract detailed information
-            if any(word in sentence.lower() for word in ['address', 'hours', 'price', 'phone', 'contact']):
-                info['details'].append(sentence.strip())
-        
-        # Remove duplicates and clean up
-        info['locations'] = list(dict.fromkeys(info['locations']))  # Remove duplicates while preserving order
-        info['activities'] = list(dict.fromkeys(info['activities']))
-        info['dining'] = list(dict.fromkeys(info['dining']))
-        info['details'] = list(dict.fromkeys(info['details']))
-        
-        return info

@@ -246,45 +246,54 @@ class SemanticSectionFilter:
         return ' '.join(intent_parts).strip()
     
     def _create_persona_expansion(self, persona_text: str, job_text: str, query_profile: Dict) -> str:
-        """Create persona-specific query expansion for stronger semantic signal"""
+        """Create universal query expansion based on job requirements and context"""
         expansion_keywords = []
         
         # Analyze the job description for key indicators
         job_lower = job_text.lower()
         persona_lower = persona_text.lower()
         
-        # College friends specific expansion
-        if any(term in job_lower for term in ['college', 'friends', 'group']):
+        # Universal dietary requirement expansion
+        if any(term in job_lower for term in ['vegetarian', 'veggie', 'plant-based']):
             expansion_keywords.extend([
-                "nightlife", "bars", "clubs", "parties", "social events", 
-                "coastal adventures", "beaches", "fun group activities",
-                "entertainment", "young adults", "budget friendly",
-                "water sports", "adventure activities", "social dining",
-                "beach clubs", "outdoor adventures", "group entertainment"
+                "vegetarian recipes", "plant-based dishes", "vegetables", "legumes", 
+                "grains", "tofu", "tempeh", "quinoa", "lentils", "beans"
             ])
         
-        # Trip planning expansion
-        if any(term in job_lower for term in ['trip', 'travel', 'plan', 'visit']):
+        if any(term in job_lower for term in ['gluten-free', 'gluten free', 'celiac']):
             expansion_keywords.extend([
-                "destinations", "attractions", "activities", "experiences",
-                "transportation", "accommodations", "itinerary"
+                "gluten-free recipes", "rice dishes", "corn tortillas", "quinoa",
+                "naturally gluten-free", "certified gluten-free ingredients"
             ])
         
-        # Business/professional expansion
-        if any(term in persona_lower for term in ['business', 'professional', 'corporate']):
+        # Universal meal context expansion
+        if any(term in job_lower for term in ['dinner', 'evening', 'main course']):
             expansion_keywords.extend([
-                "business dining", "professional venues", "networking",
-                "conference facilities", "business hotels"
+                "dinner recipes", "main courses", "entrees", "hearty meals",
+                "evening dishes", "substantial dishes", "dinner menu"
             ])
         
-        # Family expansion (if family context detected)
-        if any(term in job_lower for term in ['family', 'children', 'kids']):
+        if any(term in job_lower for term in ['buffet', 'corporate', 'catering']):
             expansion_keywords.extend([
-                "family friendly", "children activities", "kid friendly",
-                "family restaurants", "family hotels"
+                "buffet style", "crowd-pleasing", "easy serving", "large quantities",
+                "corporate catering", "group dining", "shareable dishes"
             ])
         
-        return " ".join(expansion_keywords)
+        # Universal cuisine and preparation style expansion
+        if any(term in job_lower for term in ['healthy', 'nutritious', 'wellness']):
+            expansion_keywords.extend([
+                "healthy ingredients", "nutritious meals", "fresh vegetables",
+                "whole grains", "balanced nutrition"
+            ])
+        
+        # Food contractor professional context
+        if any(term in persona_lower for term in ['food contractor', 'caterer', 'chef']):
+            expansion_keywords.extend([
+                "professional recipes", "scalable dishes", "food service",
+                "catering menu", "commercial preparation"
+            ])
+        
+        return ' '.join(expansion_keywords)
     
     def _calculate_similarities_transformer(self, intent_text: str, section_texts: List[str]) -> np.ndarray:
         """Calculate similarities using sentence transformer model"""

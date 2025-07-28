@@ -1,0 +1,179 @@
+{
+  "title": "Pan con Tomate",
+  "outline": [
+    {
+      "level": "H1",
+      "text": "Paneer Tikka",
+      "page": 1
+    },
+    {
+      "level": "H1",
+      "text": "Panzanella",
+      "page": 2
+    },
+    {
+      "level": "H1",
+      "text": "Papadum",
+      "page": 2
+    },
+    {
+      "level": "H1",
+      "text": "Patatas Bravas",
+      "page": 2
+    },
+    {
+      "level": "H1",
+      "text": "Pepper Pot",
+      "page": 3
+    },
+    {
+      "level": "H1",
+      "text": "Peri-Peri Chicken",
+      "page": 3
+    },
+    {
+      "level": "H1",
+      "text": "Pico de Gallo",
+      "page": 3
+    },
+    {
+      "level": "H1",
+      "text": "Plantain Chips",
+      "page": 4
+    },
+    {
+      "level": "H1",
+      "text": "Polenta",
+      "page": 4
+    },
+    {
+      "level": "H1",
+      "text": "Potato Salad",
+      "page": 5
+    },
+    {
+      "level": "H1",
+      "text": "Pretzels",
+      "page": 5
+    },
+    {
+      "level": "H1",
+      "text": "Coarse salt",
+      "page": 5
+    },
+    {
+      "level": "H1",
+      "text": "Pulao",
+      "page": 5
+    },
+    {
+      "level": "H1",
+      "text": "Quesadillas",
+      "page": 6
+    },
+    {
+      "level": "H1",
+      "text": "Quiche Lorraine",
+      "page": 6
+    },
+    {
+      "level": "H1",
+      "text": "Quindim",
+      "page": 7
+    },
+    {
+      "level": "H1",
+      "text": "Raita",
+      "page": 7
+    },
+    {
+      "level": "H1",
+      "text": "Ratatouille",
+      "page": 7
+    },
+    {
+      "level": "H1",
+      "text": "Refried Beans",
+      "page": 8
+    },
+    {
+      "level": "H1",
+      "text": "Rfissa",
+      "page": 8
+    },
+    {
+      "level": "H1",
+      "text": "Rice and Peas",
+      "page": 9
+    },
+    {
+      "level": "H1",
+      "text": "Rillettes",
+      "page": 9
+    },
+    {
+      "level": "H1",
+      "text": "Risotto",
+      "page": 10
+    },
+    {
+      "level": "H1",
+      "text": "Saganaki",
+      "page": 11
+    },
+    {
+      "level": "H1",
+      "text": "Saltfish Fritters",
+      "page": 12
+    },
+    {
+      "level": "H1",
+      "text": "Samosa",
+      "page": 12
+    },
+    {
+      "level": "H1",
+      "text": "Satay",
+      "page": 13
+    },
+    {
+      "level": "H1",
+      "text": "Sauerkraut",
+      "page": 13
+    },
+    {
+      "level": "H1",
+      "text": "Shakshuka",
+      "page": 13
+    },
+    {
+      "level": "H1",
+      "text": "Shawarma",
+      "page": 14
+    },
+    {
+      "level": "H1",
+      "text": "Skordalia",
+      "page": 14
+    },
+    {
+      "level": "H1",
+      "text": "Thai chilies",
+      "page": 15
+    },
+    {
+      "level": "H1",
+      "text": "Sopa de Tortilla",
+      "page": 15
+    }
+  ],
+  "metadata": {
+    "total_headings": 33,
+    "has_toc": false,
+    "confidence_stats": {
+      "mean": 0.96,
+      "min": 0.653,
+      "max": 0.97
+    }
+  }
+}
