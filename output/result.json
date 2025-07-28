@@ -1,82 +1,72 @@
 {
   "metadata": {
     "input_documents": [
-      "Learn Acrobat - Create and Convert_1.pdf",
-      "Learn Acrobat - Create and Convert_2.pdf",
-      "Learn Acrobat - Edit_1.pdf",
-      "Learn Acrobat - Edit_2.pdf",
-      "Learn Acrobat - Fill and Sign.pdf",
-      "Learn Acrobat - Request e-signatures_1.pdf",
-      "Learn Acrobat - Request e-signatures_2.pdf",
-      "Learn Acrobat - Share_1.pdf",
-      "Learn Acrobat - Share_2.pdf"
+      "Breakfast Ideas.pdf",
+      "Dinner Ideas - Mains_1.pdf",
+      "Dinner Ideas - Mains_2.pdf",
+      "Dinner Ideas - Mains_3.pdf",
+      "Dinner Ideas - Sides_1.pdf",
+      "Dinner Ideas - Sides_2.pdf",
+      "Dinner Ideas - Sides_3.pdf",
+      "Dinner Ideas - Sides_4.pdf",
+      "Lunch Ideas.pdf"
     ],
-    "persona": "HR professional",
-    "job_to_be_done": "Create and manage fillable forms for onboarding and compliance.",
-    "processing_timestamp": "2025-07-28T11:21:52.663643"
+    "persona": "Food Contractor",
+    "job_to_be_done": "Prepare a vegetarian buffet-style dinner menu for a corporate gathering, including gluten-free items.",
+    "processing_timestamp": "2025-07-28T23:06:46.689303"
   },
   "extracted_sections": [
     {
-      "document": "Learn Acrobat - Share_2.pdf",
-      "section_title": "Add comments in a text box or callout",
+      "document": "Dinner Ideas - Sides_1.pdf",
+      "section_title": "Baba",
       "importance_rank": 1,
-      "page_number": 12
+      "page_number": 4
     },
     {
-      "document": "Learn Acrobat - Create and Convert_1.pdf",
-      "section_title": "Set up automatic email archiving",
+      "document": "Dinner Ideas - Sides_2.pdf",
+      "section_title": "Gyeran",
       "importance_rank": 2,
-      "page_number": 26
+      "page_number": 15
     },
     {
-      "document": "Learn Acrobat - Share_2.pdf",
-      "section_title": "Group markups",
+      "document": "Dinner Ideas - Sides_3.pdf",
+      "section_title": "Miso",
       "importance_rank": 3,
       "page_number": 11
     },
     {
-      "document": "Learn Acrobat - Request e-signatures_2.pdf",
-      "section_title": "Certify a PDF",
+      "document": "Dinner Ideas - Sides_4.pdf",
+      "section_title": "Pico de",
       "importance_rank": 4,
-      "page_number": 6
+      "page_number": 3
     },
     {
-      "document": "Learn Acrobat - Edit_2.pdf",
-      "section_title": "Move or copy pages in a PDF",
+      "document": "Dinner Ideas - Sides_2.pdf",
+      "section_title": "Greek",
       "importance_rank": 5,
-      "page_number": 8
+      "page_number": 14
     }
   ],
   "subsection_analysis": [
     {
-      "document": "Learn Acrobat - Create and Convert_1.pdf",
-      "refined_text": "Note: For information on setting up files for the Word Mail Merge feature, see Microsoft Office Word Help.",
-      "page_number": 26
-    },
-    {
-      "document": "Learn Acrobat - Share_2.pdf",
-      "refined_text": "You can use the Add text comment tool to create a box that contains text You can position it anywhere on the page and adjust it to any size A text box remains visible on the document page; it doesn't close like a pop-up note Text font and size are based on the system's default settings Note: You can add comments to Japanese, Chinese, and Korean text with the Text Box tool, but you must have the Asian-language resource files installed Text boxes allow for horizontal text only You can use the Text callout tool to create a callout text box Callout text boxes are handy when you want to single out--but not obscure--a particular area of a document Callout text boxes have three parts: a text box, a knee line, and an end-point line You can resize each part by dragging a handle.",
-      "page_number": 12
-    },
-    {
-      "document": "Learn Acrobat - Request e-signatures_2.pdf",
-      "refined_text": "Removing pages or adding comments will result in losing the certified status.",
-      "page_number": 6
-    },
-    {
-      "document": "Learn Acrobat - Request e-signatures_2.pdf",
-      "refined_text": "In Acrobat or Acrobat Reader, the signature of a certified or signed document is valid if you and the signer have a trust relationship The trust level of the certificate indicates the actions for which you trust the signer You can change the trust settings of certificates to allow specific actions For example, you can change the settings to enable the dynamic content and embedded JavaScriptTM within the certified document 1 Navigate to the hamburger menu (Windows) or the Acrobat menu (macOS) > Preferences > Signatures 2 For identities & Trusted Certificates, select More 3 From the left panel, select Trusted Certificates.",
+      "document": "Dinner Ideas - Sides_1.pdf",
+      "refined_text": "Baked Beans Ingredients: o 4 cups cooked navy beans o 1 small onion o 1/2 cup molasses o 1/4 cup brown sugar o 1/4 cup ketchup o 1 tablespoon mustard o 1 teaspoon salt o 1/2 teaspoon pepper Instructions: o Preheat oven to 350°F (175°C).",
       "page_number": 4
     },
     {
-      "document": "Learn Acrobat - Edit_2.pdf",
-      "refined_text": "To copy or move pages within a document, use the page thumbnails in the right navigation pane or the document area.",
-      "page_number": 8
+      "document": "Dinner Ideas - Sides_3.pdf",
+      "refined_text": "Dissolve miso paste in a small amount of broth, then add to the pot.",
+      "page_number": 11
     },
     {
-      "document": "Learn Acrobat - Share_2.pdf",
-      "refined_text": "Using the Select tool or the Hand tool, select a markup. 2.",
-      "page_number": 11
+      "document": "Dinner Ideas - Sides_4.pdf",
+      "refined_text": "o 4 tomatoes o 1 small onion o 1 jalapeño o 1/4 cup cilantro o 1 lime o 1 teaspoon salt Instructions: o Dice tomatoes, onion, and jalapeño. o Chop cilantro. o Combine all ingredients in a bowl. o Squeeze lime juice over the mixture and add salt. o Mix well and serve.",
+      "page_number": 3
+    },
+    {
+      "document": "Dinner Ideas - Sides_2.pdf",
+      "refined_text": "Mix vegetables with olives and crumbled feta cheese.",
+      "page_number": 14
     }
   ]
 }

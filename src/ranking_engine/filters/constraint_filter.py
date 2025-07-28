@@ -168,7 +168,13 @@ class ConstraintFilter:
         
         # Filter out sections with very low context scores (likely wrong meal type)
         min_threshold = 0.1 if target_context == 'dinner' else 0.0
-        filtered_sections = [section for section, score in scored_sections if score >= min_threshold]
+        filtered_sections = []
+        for section, score in scored_sections:
+            if score >= min_threshold:
+                filtered_sections.append(section)
+                logger.info(f"✅ Kept section '{section.get('title', 'Unknown')}' (score: {score:.2f})")
+            else:
+                logger.info(f"❌ Filtered out section '{section.get('title', 'Unknown')}' (score: {score:.2f}, threshold: {min_threshold})")
         
         logger.info(f"📊 Context scoring: kept {len(filtered_sections)}/{len(sections)} sections")
         

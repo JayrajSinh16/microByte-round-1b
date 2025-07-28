@@ -1,4 +1,5 @@
 # src/outline_extraction/builders/outline_builder.py
+import re
 import logging
 from typing import List, Dict, Any, Optional
 
@@ -27,8 +28,11 @@ class OutlineBuilder:
                 block = next((b for b in blocks if b['id'] == pred['block_id']), None)
                 
                 if block:
-                    # Use overridden text from prediction if available (for recipe names)
+                    # Use overridden text from prediction if available (for clean extracted text)
                     heading_text = pred.get('text', block['text'].strip())
+                    
+                    # Keep headings clean - no content collection
+                    # This works for any document type (academic, business, technical, etc.)
                     
                     heading = {
                         'level': pred.get('level', 'H2'),
@@ -50,15 +54,12 @@ class OutlineBuilder:
         # Validate and fix hierarchy
         headings = self.validator.validate_and_fix(headings)
         
-        # Determine title
+        # Determine title  
         if title_info:
             title = title_info['text']
-        elif headings and headings[0]['page'] == 1:
-            # Use first heading as title if on first page
-            title = headings[0]['text']
-            headings = headings[1:]  # Remove from headings
         else:
-            title = "Untitled Document"
+            # Generic title for any document type
+            title = "Document Outline"
         
         # Build outline structure
         outline = {
@@ -91,7 +92,7 @@ class OutlineBuilder:
         return formatted
     
     def _calculate_confidence_stats(self, headings: List[Dict]) -> Dict:
-        """Calculate confidence statistics"""
+        """Calculate confidence statistics for any document type"""
         if not headings:
             return {
                 'mean': 0.0,

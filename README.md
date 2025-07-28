@@ -75,7 +75,6 @@ Scoring Components:
 ```
 
 #### 5. **Intelligent Filtering Pipeline**
-- **Constraint Filter**: Dietary restrictions, technical requirements
 - **Semantic Filter**: Intent-based content relevance  
 - **Section Filter**: Anti-pattern elimination
 - **Quality Filter**: Content usefulness scoring

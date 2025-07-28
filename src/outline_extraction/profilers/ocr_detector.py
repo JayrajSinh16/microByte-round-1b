@@ -20,6 +20,20 @@ class OCRDetector:
         for page_num in range(len(doc)):
             page = doc[page_num]
             
+            # Special handling for first page - if it's just a title page with minimal text,
+            # but other pages have good content, don't trigger OCR
+            if page_num == 0 and len(doc) > 1:
+                text = page.get_text().strip()
+                if len(text) < self.min_text_length:
+                    # Check if subsequent pages have good content
+                    next_page = doc[1]
+                    next_text = next_page.get_text().strip()
+                    next_font_info = self._check_font_info(next_page)
+                    
+                    # If next page has good content and font info, skip OCR for first page
+                    if len(next_text) >= self.min_text_length and next_font_info >= self.font_info_threshold:
+                        continue
+            
             if self._needs_ocr(page):
                 ocr_pages.append(page_num + 1)  # 1-indexed
         

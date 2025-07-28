@@ -53,8 +53,9 @@ class HeadingDetector:
         all_predictions = {}
         for name, strategy in self.strategies.items():
             try:
-                # Use all blocks for universal_document strategy (it extracts headings from within blocks)
-                if name == 'universal_document':
+                # Use all blocks for universal_document and enhanced_font strategies 
+                # (they extract headings from within blocks)
+                if name in ['universal_document', 'enhanced_font']:
                     predictions = strategy.detect(blocks, profile)
                     # No need to remap since we're using original blocks
                     all_predictions[name] = predictions

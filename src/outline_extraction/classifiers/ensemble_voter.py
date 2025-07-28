@@ -15,15 +15,16 @@ class EnsembleVoter:
         self.hierarchy_classifier = HierarchyClassifier()
         self.confidence_scorer = ConfidenceScorer()
         
-        # Default weights for strategies
+        # Default weights for strategies (must match HeadingDetector weights)
         self.default_weights = {
-            'universal_document': 0.6,  # NEW: Give our universal document strategy highest weight
-            'universal': 0.2,           # Reduce original universal weight
-            'font': 0.1,
-            'pattern': 0.05,
-            'ml': 0.03,
-            'structural': 0.02,
-            'semantic': 0.0  # Disable for now
+            'enhanced_font': 1.0,        # NEW: Enhanced font strategy with highest priority
+            'universal_document': 0.0,   # Other strategies interfere with noise filtering  
+            'universal': 0.0,           
+            'font': 0.0,
+            'pattern': 0.0,
+            'ml': 0.0,
+            'structural': 0.0,
+            'semantic': 0.0
         }
     
     def vote(self, strategy_predictions: Dict[str, List[Dict]], 
