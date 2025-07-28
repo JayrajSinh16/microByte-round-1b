@@ -22,7 +22,7 @@ def prepare_sentence_transformer():
         logger.info("📦 Preparing sentence transformer model...")
         
         # Create local model directory
-        model_dir = Path("/app/models/sentence_transformer")
+        model_dir = Path("/models/sentence_transformer")
         model_dir.mkdir(parents=True, exist_ok=True)
         
         # Download and save model locally
@@ -42,7 +42,7 @@ def prepare_nltk_data():
         import nltk
         
         # Set NLTK data path
-        nltk_data_dir = Path("/app/cache/nltk_data")
+        nltk_data_dir = Path("/cache/nltk_data")
         nltk_data_dir.mkdir(parents=True, exist_ok=True)
         nltk.data.path.append(str(nltk_data_dir))
         
@@ -70,12 +70,12 @@ def prepare_spacy_model():
 def prepare_directories():
     """Create all necessary directories"""
     directories = [
-        "/app/input/documents",
-        "/app/output",
-        "/app/output/outlines", 
-        "/app/cache",
-        "/app/cache/embeddings",
-        "/app/models"
+        "./input/documents",
+        "./output",
+        "./output/outlines", 
+        "./cache",
+        "./cache/embeddings",
+        "./models"
     ]
     
     for dir_path in directories:

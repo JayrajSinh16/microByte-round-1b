@@ -2,6 +2,7 @@ FROM python:3.9-slim
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
+    build-essential \
     tesseract-ocr \
     tesseract-ocr-eng \
     tesseract-ocr-jpn \
@@ -11,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     libxext6 \
     libxrender-dev \
     libgomp1 \
+    libgl1-mesa-glx \
     wget \
     git \
     curl \
