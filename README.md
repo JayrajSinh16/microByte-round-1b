@@ -1,6 +1,5 @@
 # 🎯 Adobe Round 1B: Universal Document Intelligence Engine
 
-```
 ## 🚀 Quick Start
 
 ### 🐳 Option 1: Docker Deployment (Recommended)
