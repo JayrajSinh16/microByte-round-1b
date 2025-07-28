@@ -240,24 +240,6 @@ Scoring Algorithm:
 - Navigation: Button text, toolbar labels, page numbers
 - Artifacts: Broken text fragments, symbol sequences
 
-### 🧠 Universal Content Processing
-
-**Before (Travel-Specific)**:
-```python
-# Hardcoded travel patterns - NOT UNIVERSAL
-if "cuisine" in title.lower():
-    boost_score += 0.3
-if "restaurant" in content:
-    expand_content = True
-```
-
-**After (Universal Approach)**:
-```python
-# Domain-agnostic context extraction  
-context_themes = extract_universal_context(content)
-relevance_score = calculate_semantic_similarity(themes, query_profile)
-```
-
 ## 📊 Output Format
 
 ```json
