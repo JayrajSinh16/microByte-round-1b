@@ -1,0 +1,334 @@
+{
+  "title": "Untitled Document",
+  "outline": [
+    {
+      "level": "H1",
+      "text": "Convert AutoCAD files to PDF (Acrobat Pro for Windows)",
+      "page": 3
+    },
+    {
+      "level": "H2",
+      "text": "Convert AutoCAD files when AutoCAD is installed",
+      "page": 3
+    },
+    {
+      "level": "H2",
+      "text": "Convert AutoCAD files in batches",
+      "page": 5
+    },
+    {
+      "level": "H1",
+      "text": "Application-specific PDFMaker settings",
+      "page": 6
+    },
+    {
+      "level": "H2",
+      "text": "Attach Source File",
+      "page": 6
+    },
+    {
+      "level": "H2",
+      "text": "Add Links",
+      "page": 6
+    },
+    {
+      "level": "H2",
+      "text": "Enable Accessibility And Reflow With Tagged Adobe PDF",
+      "page": 6
+    },
+    {
+      "level": "H2",
+      "text": "Excel-specific options on the Settings tab Convert Comments",
+      "page": 6
+    },
+    {
+      "level": "H3",
+      "text": "Actual Size",
+      "page": 6
+    },
+    {
+      "level": "H3",
+      "text": "Fit Worksheet To A Single Page",
+      "page": 6
+    },
+    {
+      "level": "H3",
+      "text": "Fit To Paper Width",
+      "page": 7
+    },
+    {
+      "level": "H3",
+      "text": "Prompt For Selecting Excel Sheets",
+      "page": 7
+    },
+    {
+      "level": "H2",
+      "text": "PowerPoint-specific options on the Settings tab",
+      "page": 7
+    },
+    {
+      "level": "H3",
+      "text": "Preserve Slide Transitions",
+      "page": 7
+    },
+    {
+      "level": "H3",
+      "text": "Convert Hidden Slides To PDF Pages",
+      "page": 7
+    },
+    {
+      "level": "H3",
+      "text": "Convert Speaker Notes",
+      "page": 7
+    },
+    {
+      "level": "H2",
+      "text": "Email-specific options on the Settings tab",
+      "page": 7
+    },
+    {
+      "level": "H3",
+      "text": "Compatibility",
+      "page": 7
+    },
+    {
+      "level": "H3",
+      "text": "Attachments",
+      "page": 7
+    },
+    {
+      "level": "H3",
+      "text": "Output Adobe PDF Portfolio When Creating A New PDF File",
+      "page": 7
+    },
+    {
+      "level": "H3",
+      "text": "Embed Index For Faster Search",
+      "page": 8
+    },
+    {
+      "level": "H3",
+      "text": "Block Download Of External Content",
+      "page": 8
+    },
+    {
+      "level": "H3",
+      "text": "Page Layout options",
+      "page": 8
+    },
+    {
+      "level": "H3",
+      "text": "Show This Number Of Recent Archives (Outlook only)",
+      "page": 8
+    },
+    {
+      "level": "H3",
+      "text": "Show “Attach As Adobe PDF” Buttons",
+      "page": 8
+    },
+    {
+      "level": "H2",
+      "text": "AutoCAD-specific options on the Settings tab (Acrobat Pro)",
+      "page": 8
+    },
+    {
+      "level": "H3",
+      "text": "Compliance Standard",
+      "page": 8
+    },
+    {
+      "level": "H3",
+      "text": "Open Layers Pane When Viewed In Acrobat",
+      "page": 8
+    },
+    {
+      "level": "H3",
+      "text": "Embed Scale Information",
+      "page": 8
+    },
+    {
+      "level": "H3",
+      "text": "Exclude Model Space",
+      "page": 9
+    },
+    {
+      "level": "H2",
+      "text": "Visio-specific options on the Settings tab (Acrobat Pro)",
+      "page": 9
+    },
+    {
+      "level": "H3",
+      "text": "Include Visio Custom Properties As Object Data In The Adobe PDF",
+      "page": 9
+    },
+    {
+      "level": "H3",
+      "text": "Exclude Visio Objects With No Custom Properties",
+      "page": 9
+    },
+    {
+      "level": "H3",
+      "text": "Convert Comments To Adobe PDF Comments",
+      "page": 9
+    },
+    {
+      "level": "H3",
+      "text": "Always Flatten Layers In Adobe PDF",
+      "page": 9
+    },
+    {
+      "level": "H3",
+      "text": "Open Layers Pane When Viewed In Acrobat",
+      "page": 9
+    },
+    {
+      "level": "H2",
+      "text": "Word tab settings (Microsoft Word)",
+      "page": 9
+    },
+    {
+      "level": "H3",
+      "text": "Convert Displayed Comments To Notes In Adobe PDF",
+      "page": 9
+    },
+    {
+      "level": "H3",
+      "text": "Reviewer",
+      "page": 9
+    },
+    {
+      "level": "H3",
+      "text": "Include",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "Color",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "# Of Comments",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "Convert Footnote And Endnote Links",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "Convert signature fields specified by pdfmarks",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "Enable Advanced Tagging",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "Bookmarks tab settings (Microsoft Word)",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "Convert Word Headings To Bookmarks",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "Convert Word Styles To Bookmarks",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "Convert Word Bookmarks",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "Element list",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "Element",
+      "page": 11
+    },
+    {
+      "level": "H3",
+      "text": "Bookmark",
+      "page": 11
+    },
+    {
+      "level": "H3",
+      "text": "Level",
+      "page": 11
+    },
+    {
+      "level": "H1",
+      "text": "Adobe PDF printing preferences (Windows)",
+      "page": 14
+    },
+    {
+      "level": "H2",
+      "text": "Adobe PDFConversion Settings",
+      "page": 15
+    },
+    {
+      "level": "H2",
+      "text": "Adobe PDF Security",
+      "page": 15
+    },
+    {
+      "level": "H2",
+      "text": "Adobe PDF Output Folder",
+      "page": 15
+    },
+    {
+      "level": "H2",
+      "text": "Adobe PDF Page Size menu",
+      "page": 16
+    },
+    {
+      "level": "H2",
+      "text": "Replace Existing PDF",
+      "page": 16
+    },
+    {
+      "level": "H2",
+      "text": "View Adobe PDF Results",
+      "page": 16
+    },
+    {
+      "level": "H2",
+      "text": "Add Document Information",
+      "page": 16
+    },
+    {
+      "level": "H2",
+      "text": "Rely On System Fonts Only; Do Not Use Document Fonts",
+      "page": 16
+    },
+    {
+      "level": "H1",
+      "text": "Set Adobe PDF printer properties (Windows)",
+      "page": 17
+    },
+    {
+      "level": "H2",
+      "text": "Set Adobe PDF printer properties",
+      "page": 17
+    }
+  ],
+  "metadata": {
+    "total_headings": 64,
+    "has_toc": false,
+    "confidence_stats": {
+      "mean": 0.761,
+      "min": 0.727,
+      "max": 0.822
+    }
+  }
+}

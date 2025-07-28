@@ -1,0 +1,219 @@
+{
+  "title": "Learn Acrobat: Create and Convert",
+  "outline": [
+    {
+      "level": "H2",
+      "text": "Adobe",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "What’s the best way to create a PDF?",
+      "page": 2
+    },
+    {
+      "level": "H3",
+      "text": "PDF creation methods by file type",
+      "page": 2
+    },
+    {
+      "level": "H3",
+      "text": "File Type PDF Creation Methods",
+      "page": 2
+    },
+    {
+      "level": "H3",
+      "text": "select> Print > Adobe PDF.",
+      "page": 4
+    },
+    {
+      "level": "H3",
+      "text": "Balance PDF file size and quality",
+      "page": 5
+    },
+    {
+      "level": "H3",
+      "text": "Convert a file to PDF using the Convert to PDF tool",
+      "page": 9
+    },
+    {
+      "level": "H3",
+      "text": "Drag-and-drop to create PDFs",
+      "page": 9
+    },
+    {
+      "level": "H3",
+      "text": "Convert clipboard content to PDF",
+      "page": 10
+    },
+    {
+      "level": "H3",
+      "text": "About Acrobat PDFMaker",
+      "page": 12
+    },
+    {
+      "level": "H3",
+      "text": "Using Create PDF cloud service for PDF conversion",
+      "page": 13
+    },
+    {
+      "level": "H3",
+      "text": "Convert a file to PDF using PDFMaker",
+      "page": 14
+    },
+    {
+      "level": "H3",
+      "text": "Show or activate PDFMaker in Microsoft Office and Lotus Notes",
+      "page": 14
+    },
+    {
+      "level": "H3",
+      "text": "PDF button .",
+      "page": 18
+    },
+    {
+      "level": "H3",
+      "text": "View PDFMaker conversion settings",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "Conversion Settings",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "View Adobe PDF Result",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "Prompt For Adobe PDF File Name",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "Convert Document Information",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "PDF/A Compliance",
+      "page": 21
+    },
+    {
+      "level": "H3",
+      "text": "Security tab of the Adobe PDFMaker preferences",
+      "page": 21
+    },
+    {
+      "level": "H3",
+      "text": "Require A Password To Open The Document",
+      "page": 21
+    },
+    {
+      "level": "H3",
+      "text": "Restrict Editing And Printing Of The Document",
+      "page": 21
+    },
+    {
+      "level": "H3",
+      "text": "Change Permissions Password",
+      "page": 21
+    },
+    {
+      "level": "H3",
+      "text": "Printing Allowed",
+      "page": 21
+    },
+    {
+      "level": "H3",
+      "text": "Changes Allowed",
+      "page": 21
+    },
+    {
+      "level": "H3",
+      "text": "Enable Copying Of Text, Images, And Other Contents",
+      "page": 21
+    },
+    {
+      "level": "H3",
+      "text": "Enable Text Access For Screen Reader Devices For The Visually Impaired",
+      "page": 21
+    },
+    {
+      "level": "H3",
+      "text": "Enable Plaintext Metadata",
+      "page": 21
+    },
+    {
+      "level": "H3",
+      "text": "Convert Microsoft Word, PowerPoint, and Excel files to PDF",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "Convert Excel files to PDF",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "Convert Word and PowerPoint files to PDF",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "Convert email messages to PDFs",
+      "page": 23
+    },
+    {
+      "level": "H3",
+      "text": "Specify whether email messages become merged PDFs or PDF Portfolios",
+      "page": 23
+    },
+    {
+      "level": "H3",
+      "text": "Convert email folders to a new PDF",
+      "page": 25
+    },
+    {
+      "level": "H3",
+      "text": "Set up automatic email archiving",
+      "page": 26
+    },
+    {
+      "level": "H3",
+      "text": "Email options for PDF mail merges",
+      "page": 28
+    },
+    {
+      "level": "H3",
+      "text": "Subject Line",
+      "page": 28
+    },
+    {
+      "level": "H3",
+      "text": "Message",
+      "page": 28
+    },
+    {
+      "level": "H3",
+      "text": "Convert Visio files to PDF (Acrobat Pro)",
+      "page": 29
+    },
+    {
+      "level": "H1",
+      "text": "5. Click Continue.",
+      "page": 29
+    }
+  ],
+  "metadata": {
+    "total_headings": 41,
+    "has_toc": false,
+    "confidence_stats": {
+      "mean": 0.749,
+      "min": 0.73,
+      "max": 0.785
+    }
+  }
+}

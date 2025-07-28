@@ -1,77 +1,77 @@
 {
     "metadata": {
         "input_documents": [
-            "Breakfast Ideas.pdf",
-            "Dinner Ideas - Mains_1.pdf",
-            "Dinner Ideas - Mains_2.pdf",
-            "Dinner Ideas - Mains_3.pdf",
-            "Dinner Ideas - Sides_1.pdf",
-            "Dinner Ideas - Sides_2.pdf",
-            "Dinner Ideas - Sides_3.pdf",
-            "Dinner Ideas - Sides_4.pdf",
-            "Lunch Ideas.pdf"
+            "Learn Acrobat - Create and Convert_1.pdf",
+            "Learn Acrobat - Create and Convert_2.pdf",
+            "Learn Acrobat - Edit_1.pdf",
+            "Learn Acrobat - Edit_2.pdf",
+            "Learn Acrobat - Fill and Sign.pdf",
+            "Learn Acrobat - Request e-signatures_1.pdf",
+            "Learn Acrobat - Request e-signatures_2.pdf",
+            "Learn Acrobat - Share_1.pdf",
+            "Learn Acrobat - Share_2.pdf"
         ],
-        "persona": "Food Contractor",
-        "job_to_be_done": "Prepare a vegetarian buffet-style dinner menu for a corporate gathering, including gluten-free items.",
-        "processing_timestamp": "2025-07-10T15:40:14.642503"
+        "persona": "HR professional",
+        "job_to_be_done": "Create and manage fillable forms for onboarding and compliance.",
+        "processing_timestamp": "2025-07-10T15:34:33.350102"
     },
     "extracted_sections": [
         {
-            "document": "Dinner Ideas - Sides_2.pdf",
-            "section_title": "Falafel",
+            "document": "Learn Acrobat - Fill and Sign.pdf",
+            "section_title": "Change flat forms to fillable (Acrobat Pro)",
             "importance_rank": 1,
-            "page_number": 7
+            "page_number": 12
         },
         {
-            "document": "Dinner Ideas - Sides_3.pdf",
-            "section_title": "Ratatouille",
+            "document": "Learn Acrobat - Create and Convert_1.pdf",
+            "section_title": "Create multiple PDFs from multiple files",
             "importance_rank": 2,
-            "page_number": 8
+            "page_number": 12
         },
         {
-            "document": "Dinner Ideas - Sides_1.pdf",
-            "section_title": "Baba Ganoush",
+            "document": "Learn Acrobat - Create and Convert_1.pdf",
+            "section_title": "Convert clipboard content to PDF",
             "importance_rank": 3,
-            "page_number": 4
+            "page_number": 10
         },
         {
-            "document": "Lunch Ideas.pdf",
-            "section_title": "Veggie Sushi Rolls",
+            "document": "Learn Acrobat - Fill and Sign.pdf",
+            "section_title": "Fill and sign PDF forms",
             "importance_rank": 4,
-            "page_number": 11
+            "page_number": 2
         },
         {
-            "document": "Dinner Ideas - Mains_2.pdf",
-            "section_title": "Vegetable Lasagna",
+            "document": "Learn Acrobat - Request e-signatures_1.pdf",
+            "section_title": "Send a document to get signatures from others",
             "importance_rank": 5,
-            "page_number": 9
+            "page_number": 2
         }
     ],
     "subsection_analysis": [
         {
-            "document": "Dinner Ideas - Sides_2.pdf",
-            "refined_text": "Escalivada Ingredients: 2 eggplants, 2 bell peppers, 2 tomatoes, 1 small onion, 1/4 cup olive oil, 1 teaspoon salt. Instructions: Preheat oven to 400°F (200°C). Roast eggplants, bell peppers, tomatoes, and onion until tender. Peel and slice vegetables. Arrange on a plate and drizzle with olive oil. Sprinkle with salt and serve warm or at room temperature.",
-            "page_number": 7
+            "document": "Learn Acrobat - Fill and Sign.pdf",
+            "refined_text": "To create an interactive form, use the Prepare Forms tool. See Create a form from an existing document.",
+            "page_number": 12
         },
         {
-            "document": "Dinner Ideas - Sides_2.pdf",
-            "refined_text": "Falafel Ingredients: 1 can chickpeas, 1 small onion, 2 cloves garlic, 1/4 cup parsley, 1 teaspoon cumin, 1 teaspoon coriander, 1 teaspoon salt, 1/4 cup flour, oil for frying. Instructions: Drain and rinse chickpeas. Blend chickpeas, diced onion, minced garlic, chopped parsley, cumin, coriander, and salt in a food processor. Add flour and mix until combined. Form mixture into balls and fry in hot oil until golden.",
-            "page_number": 7
+            "document": "Learn Acrobat - Fill and Sign.pdf",
+            "refined_text": "To enable the Fill & Sign tools, from the hamburger menu (File menu in macOS) choose Save As Other > Acrobat Reader Extended PDF > Enable More Tools (includes Form Fill-in & Save). The tools are enabled for the current form only. When you create a different form, redo this task to enable Acrobat Reader users to use the tools.",
+            "page_number": 12
         },
         {
-            "document": "Dinner Ideas - Sides_1.pdf",
-            "refined_text": "Baba Ganoush Ingredients: 2 eggplants, 1/4 cup tahini, 1/4 cup lemon juice, 2 cloves garlic, 1/4 cup olive oil, 1 teaspoon salt. Instructions: Roast eggplants until soft, then peel and mash. Blend mashed eggplant, tahini, lemon juice, minced garlic, and salt in a food processor. Slowly add olive oil while blending until smooth. Serve with a drizzle of olive oil.",
-            "page_number": 4
+            "document": "Learn Acrobat - Fill and Sign.pdf",
+            "refined_text": "Interactive forms contain fields that you can select and fill in. Flat forms do not have interactive fields. The Fill & Sign tool automatically detects the form fields like text fields, comb fields, checkboxes, and radio buttons. You can manually add text and other symbols anywhere on the form using the Fill & Sign tool if required.",
+            "page_number": 2
         },
         {
-            "document": "Lunch Ideas.pdf",
-            "refined_text": "Veggie Sushi Rolls Ingredients: 1 cup cooked sushi rice, 1/2 cucumber (julienned), 1/2 avocado (sliced), 1/4 cup carrot (julienned), 2 sheets nori (seaweed), soy sauce for dipping. Instructions: Lay a sheet of nori on a bamboo sushi mat. Spread a thin layer of sushi rice over the nori, leaving a 1-inch border at the top. Arrange the cucumber, avocado, and carrot in a line along the bottom edge of the rice. Roll the nori tightly using the bamboo mat. Slice into bite-sized pieces and serve with soy sauce.",
-            "page_number": 11
+            "document": "Learn Acrobat - Fill and Sign.pdf",
+            "refined_text": "To fill text fields: From the left panel, select Fill in form fields, and then select the field where you want to add text. It displays a text field along with a toolbar. Select the text field again and enter your text. To reposition the text box to align it with the text field, select the textbox and hover over it. Once you see a plus icon with arrows, move the textbox to the desired position. To edit the text, select the text box. Once you see the cursor and keypad, edit the text and then click elsewhere to enter. To change the text size, select A or A as required.",
+            "page_number": 2
         },
         {
-            "document": "Dinner Ideas - Sides_3.pdf",
-            "refined_text": "Macaroni and Cheese Ingredients: 2 cups elbow macaroni, 2 cups milk, 2 tablespoons butter, 2 tablespoons flour, 2 cups shredded cheddar cheese, 1 teaspoon salt, 1/2 teaspoon pepper. Instructions: Cook macaroni according to package instructions, then drain. Melt butter in a saucepan, stir in flour to make a roux. Gradually add milk, stirring constantly until thickened. Add cheese, salt, and pepper, stir until melted. Combine cheese sauce with macaroni. Serve warm.",
-            "page_number": 8
+            "document": "Learn Acrobat - Request e-signatures_1.pdf",
+            "refined_text": "Open the PDF form in Acrobat or Acrobat Reader, and then choose All tools > Request E-signatures. Alternatively, you can select Sign from the top toolbar. The Request Signatures window is displayed. In the recipients field, add recipient email addresses in the order you want the document to be signed. The Mail and Message fields are just like the ones you use for sending an email and appear to your recipients in the same way. Change the default text in the Subject & Message area as appropriate.",
+            "page_number": 2
         }
     ]
 }

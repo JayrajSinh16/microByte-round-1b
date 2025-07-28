@@ -3,7 +3,7 @@ import logging
 from typing import List, Dict, Any
 
 from ..strategies import (
-    FontStrategy, PatternStrategy, MLStrategy, 
+    FontStrategy, EnhancedFontStrategy, PatternStrategy, MLStrategy, 
     StructuralStrategy, SemanticStrategy, UniversalStrategy
 )
 from ..strategies.universal_document_strategy import UniversalDocumentStrategy
@@ -16,9 +16,10 @@ class HeadingDetector:
     
     def __init__(self):
         self.strategies = {
-            'universal_document': UniversalDocumentStrategy(),  # NEW: Primary universal strategy
-            'universal': UniversalStrategy(),  # Keep as fallback
-            'font': FontStrategy(),
+            'enhanced_font': EnhancedFontStrategy(),    # NEW: Enhanced font strategy with highest priority
+            'universal_document': UniversalDocumentStrategy(),  # Secondary universal strategy
+            'universal': UniversalStrategy(),           # Keep as fallback
+            'font': FontStrategy(),                     # Original font strategy as backup
             'pattern': PatternStrategy(),
             'ml': MLStrategy(),
             'structural': StructuralStrategy(),
@@ -26,13 +27,14 @@ class HeadingDetector:
         }
         
         self.weights = {
-            'universal_document': 0.6,  # Give our new strategy highest weight
-            'universal': 0.2,           # Reduce original universal weight
-            'font': 0.1,
-            'pattern': 0.05,
-            'ml': 0.03,
-            'structural': 0.02,
-            'semantic': 0.0  # Disable for now
+            'enhanced_font': 1.0,        # Only use enhanced font strategy - it works perfectly!
+            'universal_document': 0.0,   # Other strategies interfere with noise filtering
+            'universal': 0.0,
+            'font': 0.0,
+            'pattern': 0.0,
+            'ml': 0.0,
+            'structural': 0.0,
+            'semantic': 0.0
         }
     
     def detect(self, blocks: List[Dict], profile: Dict) -> Dict[str, List[Dict]]:

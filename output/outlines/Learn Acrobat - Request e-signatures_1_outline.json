@@ -1,0 +1,109 @@
+{
+  "title": "Learn Acrobat: Request E-signatures",
+  "outline": [
+    {
+      "level": "H2",
+      "text": "Adobe",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "Signer's experience",
+      "page": 8
+    },
+    {
+      "level": "H3",
+      "text": "Why use certificate signatures?",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "What can I do with certificate IDs?",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "Sign documents",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "Validate documents",
+      "page": 20
+    },
+    {
+      "level": "H3",
+      "text": "Set privileges and permissions for others",
+      "page": 21
+    },
+    {
+      "level": "H3",
+      "text": "Resources",
+      "page": 21
+    },
+    {
+      "level": "H3",
+      "text": "Shin Digitally signed by John Smith",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "Steps to add a certificate-based signature to a PDF",
+      "page": 22
+    },
+    {
+      "level": "H3",
+      "text": "Certifying and signing documents",
+      "page": 23
+    },
+    {
+      "level": "H3",
+      "text": "Digitally sign",
+      "page": 23
+    },
+    {
+      "level": "H3",
+      "text": "Certify (visible or invisible signatures)",
+      "page": 23
+    },
+    {
+      "level": "H3",
+      "text": "Customizing signature workflows using seed values",
+      "page": 25
+    },
+    {
+      "level": "H3",
+      "text": "Set up a roaming ID account",
+      "page": 26
+    },
+    {
+      "level": "H3",
+      "text": "PKCS#12 modules and tokens",
+      "page": 27
+    },
+    {
+      "level": "H3",
+      "text": "Store certificates on directory servers",
+      "page": 27
+    },
+    {
+      "level": "H3",
+      "text": "Configure a timestamp server",
+      "page": 29
+    },
+    {
+      "level": "H3",
+      "text": "Set a timestamp server as the default",
+      "page": 30
+    }
+  ],
+  "metadata": {
+    "total_headings": 19,
+    "has_toc": false,
+    "confidence_stats": {
+      "mean": 0.749,
+      "min": 0.719,
+      "max": 0.776
+    }
+  }
+}

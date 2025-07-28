@@ -1,0 +1,69 @@
+{
+  "title": "Learn Acrobat: Share",
+  "outline": [
+    {
+      "level": "H2",
+      "text": "Adobe",
+      "page": 1
+    },
+    {
+      "level": "H3",
+      "text": "Share You can quickly share a link to a PDF document with others for viewing or commenting. The",
+      "page": 2
+    },
+    {
+      "level": "H3",
+      "text": "PDF sharing options",
+      "page": 2
+    },
+    {
+      "level": "H3",
+      "text": "Shared with the dialog box. Select Unshare in the lower-right to stop sharing",
+      "page": 6
+    },
+    {
+      "level": "H3",
+      "text": "Highlight, strikethrough, or underline text comment",
+      "page": 7
+    },
+    {
+      "level": "H3",
+      "text": "Replace text",
+      "page": 8
+    },
+    {
+      "level": "H1",
+      "text": "2. Select Replace selected text.",
+      "page": 9
+    },
+    {
+      "level": "H2",
+      "text": "Share a PDF for review",
+      "page": 10
+    },
+    {
+      "level": "H2",
+      "text": "Send an anonymous or public link in an email",
+      "page": 10
+    },
+    {
+      "level": "H1",
+      "text": "2. Select Share.",
+      "page": 11
+    },
+    {
+      "level": "H2",
+      "text": "Initiate SharePoint-based shared review using Acrobat",
+      "page": 14
+    }
+  ],
+  "metadata": {
+    "total_headings": 11,
+    "has_toc": false,
+    "confidence_stats": {
+      "mean": 0.754,
+      "min": 0.723,
+      "max": 0.782
+    }
+  }
+}
