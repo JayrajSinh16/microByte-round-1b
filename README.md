@@ -1,41 +1,5 @@
 # 🎯 Adobe Round 1B: Universal Document Intelligence Engine
 
-
-
-## 🏗️ Engine Architecture & Workflow
-
-```mermaid
-graph TD
-    A[📄 PDF Documents] --> B[🔍 Enhanced Outline Extraction]
-    C[👤 Persona Input] --> D[🧠 Persona Analysis]
-    E[🎯 Job Description] --> D
-    
-    B --> F[📝 Content Extraction]
-    D --> G[🔍 Query Profile Building]
-    
-    F --> H[🎯 Ranking Engine]
-    G --> H
-    
-    H --> I[📊 Multi-Scorer Ensemble]
-    I --> J[🔧 Constraint Filtering]
-    J --> K[✨ Subsection Refinement]
-    K --> L[📋 Final Results]
-    
-    style B fill:#e1f5fe
-    style H fill:#f3e5f5
-    style I fill:#fff3e0
-    style L fill:#e8f5e8
-```
-
-
-#### 4. **Multi-Scorer Ranking Engine**
-```python
-Scoring Components:
-├── TF-IDF Scorer (20%)        # Term frequency analysis
-├── BM25 Scorer (15%)          # Best matching ranking
-├── Semantic Scorer (40%)      # Sentence transformer similarity  
-├── Structural Scorer (15%)    # Document hierarchy importance
-└── Domain-Aware Scorer (10%)  # Persona-specific relevance
 ```
 ## 🚀 Quick Start
 
@@ -106,6 +70,34 @@ python scripts/prepare_models.py
 # 4. Run the system
 python run.py
 ```
+
+
+## 🏗️ Engine Architecture & Workflow
+
+```mermaid
+graph TD
+    A[📄 PDF Documents] --> B[🔍 Enhanced Outline Extraction]
+    C[👤 Persona Input] --> D[🧠 Persona Analysis]
+    E[🎯 Job Description] --> D
+    
+    B --> F[📝 Content Extraction]
+    D --> G[🔍 Query Profile Building]
+    
+    F --> H[🎯 Ranking Engine]
+    G --> H
+    
+    H --> I[📊 Multi-Scorer Ensemble]
+    I --> J[🔧 Constraint Filtering]
+    J --> K[✨ Subsection Refinement]
+    K --> L[📋 Final Results]
+    
+    style B fill:#e1f5fe
+    style H fill:#f3e5f5
+    style I fill:#fff3e0
+    style L fill:#e8f5e8
+```
+
+
 ### 🔧 Core Components
 
 #### 1. **Enhanced Outline Extraction Engine**
